@@ -20,7 +20,7 @@ export class EventtileComponent implements OnInit {
   constructor() {
     this.description = "Seid ihr bereit eure Gehirne zu überladen und euch bei einem Musikerlebnis der ganz heftigen Art teilzunehmen? Dann bist du hier genau richtig und wirst jede Menge Anschluss und eine neue Lieblingsband kennenlernen. Sei dabei!";
     this.location = "Linz, AT";
-    this.asset = "LOGO_rot auf schwarz.png";
+    this.asset = "nomaam.png";
     this.title = "Earthsplitter Teaser Party";
     this.time = 1554116400;
     this.timeString = this.dateToString(new Date(this.time*1000));
