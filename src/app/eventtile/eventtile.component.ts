@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from '../location.service';
 
 @Component({
   selector: 'app-eventtile',
@@ -17,7 +18,7 @@ export class EventtileComponent implements OnInit {
   timeString:string;
   location:string;
 
-  constructor() {
+  constructor(private locationService: LocationService) {
     this.description = "Seid ihr bereit eure Gehirne zu überladen und euch bei einem Musikerlebnis der ganz heftigen Art teilzunehmen? Dann bist du hier genau richtig und wirst jede Menge Anschluss und eine neue Lieblingsband kennenlernen. Sei dabei!";
     this.location = "Linz, AT";
     this.asset = "nomaam.png";
@@ -27,6 +28,7 @@ export class EventtileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.locationService.getLocation();
   }
 
 
