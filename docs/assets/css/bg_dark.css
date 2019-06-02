@@ -1,0 +1,98 @@
+/* GENERAL */
+body {
+    color: #d0d0d0;
+}
+
+header {
+    background: rgb(0, 0, 0);
+}
+
+footer {
+    background-color: #2f2d2c;
+}
+  
+main{
+    background-color: #202020;
+}
+
+#addButton {
+    border: 1px solid white;
+    background: url('../images/add_alternative_dark.png') no-repeat center;
+}
+
+/* HEADER */
+.brandDiv {
+    background: url(../images/header_dark.png) no-repeat center center;
+}
+
+.toplowerbar {
+    background-color: #2f2d2c;
+}
+
+/* NAV */
+#sidenav {
+    background: #2f2d2c;
+}
+
+#sidenavunderlay {
+    background-color: #ffffff91;
+}
+
+.navtop > ul > li > a > button {
+    border: 1px solid white;
+    background: #050505;
+    color: #d0d0d0;
+}
+
+.navbottom {
+    background: #2f2d2c;
+}
+
+#loginButton {
+    border: 1px solid white;
+}
+
+/* MODAL */
+#modalcontent {
+    background-color: #202020;
+}
+
+#modal .close {
+    border: 1px solid #ccc;
+}
+
+#modal .close:before, #modal .close:after {
+    background-color: #ccc;
+}
+
+/* FILTER */
+#filtercontent {
+    background-color: #202020;
+}
+
+/* TILES */
+.eventTile {
+    border: 2px solid #111111;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 4px 8px 0 rgba(255, 255, 255, 0.19);
+    background-color: #111111;
+}
+
+.eventIconImg {
+    border: 1px solid white;
+}
+
+/* scroll bar */
+/* Track */
+::-webkit-scrollbar-track {
+    background: #0e0e0e;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #777777;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #aaaaaa;
+}
