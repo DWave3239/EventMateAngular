@@ -1,73 +1,36 @@
-<header>
-  <div class="topbar">
-      <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0"
-              onclick="changeSideNavIconRotation()" /></div>
-      <div class="brandDiv"></div>
-      <div class="headerSpacer">&nbsp;</div>
-  </div>
-  <div class="toplowerbar">
-      <div class="headerSpacer">&nbsp;</div>
-      <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR your location
-          <img src="assets/images/loc.png" style="height: 35px;" />
-      </div>
-      <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
-              onclick="toggleFilter()" /></div>
-  </div>
-</header>
-<nav id="sidenav">
-  <div>
-      <div class="navtop">
-          <table id="login">
-              <tr>
-                  <td><input type="text" placeholder="Username"></td>
-              </tr>
-              <tr>
-                  <td><input type="password" placeholder="Password"></td>
-              </tr>
-              <tr>
-                  <td><input type="submit" value="Login" id="loginButton"></td>
-              </tr>
-          </table>
-          <hr />
-          <ul>
-              <li><a href="#" class="pagelink" data-pageId="index"><button>Near your location</button></a></li>
-              <li><a href="#" class="pagelink" data-pageId="yourEvents"><button>Your events</button></a></li>
-              <li><a href="#" class="pagelink" data-pageId="plannedToAttend"><button>Planned to attend</button></a></li>
-              <!--<li><a href="add.html"><button>Add new event</button></a></li>-->
-              <li><a href="notificationTest.html"><button>Notification Testpage</button></a></li>
-              <li><a href="#" class="pagelink" data-pageId="about"><button>About</button></a></li>
-          </ul>
-      <!--</div>
-      <div class="navbottom">-->
-          <hr />
-          Settings<br />
-          <label class="switch">
-              <input type="checkbox" id="darkmode" onclick="changeTheme();">
-              <span class="slider round"></span>
-          </label>
-          <label for="darkmode">Darkmode</label>
-      </div>
-  </div>
-</nav>
-<nav id="sidenavunderlay">&nbsp;</nav>
-<main id="maincontent">
-  <div class="map eventTile" id="map">Location </div>
-  <app-eventtile></app-eventtile>
-</main>
-<main id="filter">
-  <div id="filterunderlay"></div>
-  <app-filtercontent></app-filtercontent>
-</main>
-<main id="modal">
-  <div id="modalunderlay"></div>
-  <div id="modalcontent">
-      <div class="close" onclick="closeModal(this)"></div>
-      <div id="modalcontentpane">
-      </div>
-  </div>
-</main>
-<div id="loader"></div>
-<div id="addButton" class="modallink" data-eventId="add"></div>
-<footer id="footer">
-  <p>© 2019 by Team EventMate</p>
-</footer>
+<!--Header-->
+<mat-toolbar class="header">  
+    <mat-toolbar-row>
+      <span  class="topbar">
+          <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0" onclick="changeSideNavIconRotation()"/></div>
+            <div class="brandDiv">
+            </div>
+            <div class="headerSpacer">&nbsp;</div>
+        </span>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+      <span class="toplowerbar">
+            <div class="headerSpacer">&nbsp;</div>
+            <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
+                <img src="assets/images/loc.png" style="height: 35px;" />
+            </div>
+            <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
+                    onclick="toggleFilter()" /></div>
+      </span>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<!--Nav-->
+<div class="content">
+    <mat-sidenav-container class="example-sidenav-container">
+        <app-nav></app-nav>
+        <mat-sidenav-content>
+            <div>test</div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+<!--content-->
+
+<!--Footer-->
+<mat-toolbar class="footer"><div class="footer"><p>© 2019 by Team EventMate</p></div></mat-toolbar>
