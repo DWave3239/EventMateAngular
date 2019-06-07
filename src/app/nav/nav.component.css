@@ -6,7 +6,7 @@
   }
 
 .sidenav {
-    position: absolute;
+    position: fixed;
     top: 45px;
     z-index: 100;
     height: calc(100% - 105px);

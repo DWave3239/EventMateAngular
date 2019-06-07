@@ -2,7 +2,7 @@
 <mat-toolbar class="header">  
     <mat-toolbar-row>
       <span  class="topbar">
-          <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0" onclick="changeSideNavIconRotation()"/></div>
+          <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0" (click)="snav.toggle()" onclick="changeSideNavIconRotation()"/></div>
             <div class="brandDiv">
             </div>
             <div class="headerSpacer">&nbsp;</div>
@@ -22,14 +22,15 @@
 </mat-toolbar>
 
 <!--Nav-->
-<div class="content">
-    <mat-sidenav-container class="example-sidenav-container">
-        <app-nav></app-nav>
-        <mat-sidenav-content>
-            <div>test</div>
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #snav mode='over' fixedInViewport="true">
+            <app-nav></app-nav>       
+        </mat-sidenav>
+        <mat-sidenav-content class="content">
+            <app-eventtile></app-eventtile>
         </mat-sidenav-content>
     </mat-sidenav-container>
-</div>
+
 <!--content-->
 
 <!--Footer-->
