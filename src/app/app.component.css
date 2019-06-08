@@ -12,7 +12,7 @@
 
 .sidenav-container {
     flex: 1;
-    z-index: 100;
+    z-index: 50;
     position: fixed;
     top: 45px;
     bottom: 40px;
@@ -39,7 +39,8 @@ mat-toolbar-row {
 
 .header {
     top: 0px;
-    height: 90px;
+    height: 45px;    
+    min-height: 40px;
 }
 
 .footer {
@@ -137,11 +138,14 @@ mat-toolbar-row {
 
 .topbar, .toplowerbar {
     height: 45px;
-    width: 100%;
+    width: 100%;  
 }
 
 .toplowerbar {
+    top: 45px;
     font-size: 25px;
+    max-width: 1120px;    
+    position: fixed;
 }
 
 /* Colors */
@@ -160,4 +164,9 @@ mat-toolbar-row {
 
 .toplowerbar {
     background-color: #d0d2d3;
+}
+
+/*Filter*/
+.filter {
+    z-index: 150;
 }

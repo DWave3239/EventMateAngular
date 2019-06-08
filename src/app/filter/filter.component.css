@@ -1,0 +1,81 @@
+.filter {
+    top: 90px;
+    width: 100%;
+    max-width: 1120px;
+    position: fixed;
+    z-index: 60;
+}
+
+
+main#filter {
+    background: #ffffff00; /* color doesn't matter, only alpha is relevant*/
+    position: absolute;
+    max-height: calc(100% - 45px);
+    max-width: 70em;
+    width: 100%;
+    display: none;
+    top: -10000px;
+    z-index: 25;
+}
+
+#filterunderlay {
+    background: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.filtercontent {
+    position: absolute;
+    margin: 20px;
+    padding: 20px;
+    margin-top: 0px;
+    max-width: 68em;
+    min-width: calc(100% - 80px);
+    display: block;
+}
+
+#filtercontentpane {
+    height: 100%;
+    overflow: auto;
+}
+
+.filterform td:nth-child(2) {
+    width: 100%;
+}
+
+#filter .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+}
+
+#filter .close:hover {
+    opacity: 1;
+}
+
+#filter .close:before, #filter .close:after {
+    position: absolute;
+    left: 9px;
+    content: ' '; /* anzuzeigender content */
+    height: 21px; /* element höhe */
+    width: 2px; /* strichdicke */
+}
+
+#filter .close:before {
+    transform: rotate(45deg);
+}
+
+#filter .close:after {
+    transform: rotate(-45deg);
+}
+
+.rangeslidecontainer {
+    width: 100%; /* Width of the outside container */
+}

@@ -4,19 +4,20 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
-import { FiltercontentComponent } from './filtercontent/filtercontent.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {NavComponent} from './nav/nav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { FilterComponent } from './filter/filter.component';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     EventtileComponent,
-    FiltercontentComponent,
-    NavComponent
+    NavComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     BrowserAnimationsModule,
     MatButtonModule, MatCheckboxModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

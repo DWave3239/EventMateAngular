@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterComponent } from './filter/filter.component';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'EventMateAngular';
   city = ' your location';
-  
+
+
+
+  toggleFilter() {
+    //this.filter.toggle();
+    console.log("toggle filter");
+
+  }  
 }
