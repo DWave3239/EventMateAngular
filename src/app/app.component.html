@@ -9,9 +9,6 @@
         </span>
     </mat-toolbar-row>
 </mat-toolbar>
-
-<!--Filter-->
-<app-filter></app-filter>
       
 <!--Nav-->
     <mat-sidenav-container class="sidenav-container">
@@ -20,6 +17,8 @@
         </mat-sidenav>
 <!--content-->
         <mat-sidenav-content class="content">
+            <!--Filter-->
+            <app-filter #filter></app-filter>
             <div class="toplowerbar">
                 <div class="headerSpacer">&nbsp;</div>
                 <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}

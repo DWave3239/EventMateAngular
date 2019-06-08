@@ -1,16 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgModule } from '@angular/core';
+import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
+         MatExpansionModule, MatFormFieldModule, MatNativeDateModule, 
+         MatSidenavModule, MatSliderModule, MatSlideToggleModule, 
+         MatToolbarModule, MatChipsModule } from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {NavComponent} from './nav/nav.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import { FilterComponent } from './filter/filter.component';
-import {MatExpansionModule} from '@angular/material/expansion'; 
+import { NavComponent } from './nav/nav.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +27,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule, MatCheckboxModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

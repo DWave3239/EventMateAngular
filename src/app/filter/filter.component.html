@@ -1,65 +1,57 @@
 <div class="filter" [@openClose]="isOpen ? 'open' : 'closed'">
-    <p>The box is now {{ isOpen ? 'Open' : 'Closed' }}!</p>
-</div>
+    <div class="filtercontent">
+        <form class="filterform">
+            <table>
+                <tr>
+                    <td><label for="filterOn">Enable Filter&nbsp;</label></td>
+                    <td colspan="2">
+                        <mat-slide-toggle></mat-slide-toggle>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Distance:</td>
+                    <td>
+                        <mat-slider class="slider" thumbLabel [displayWith]="formatLabel" value="10" min="1" max="50"></mat-slider>
 
-<div class="filtercontent">
-    <form class="filterform">
-        <table>
-            <tr>
-                <td><label for="filterOn">Enable Filter&nbsp;</label></td>
-                <td colspan="2">
-                    <label class="switch">
-                        <input type="checkbox" id="filterOn" onchange="changeFilterIcon(this);">
-                        <span class="slider round"></span>
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <td>Distance:</td>
-                <td>
-                    <div class="rangeslidercontainer"><span class="min">10 km</span><input type="range" min="1" max="100" value="100"
-                            class="rangeslider" id="rangeFilter"><span class="max">&infin;</span></div>
-                </td> <!-- make slider -->
-                <td></td>
-            </tr>
-            <tr>
-                <td>Type:</td>
-                <td colspan="2">
-                    <select multiple>
-                        <option value="1">Type 1</option>
-                        <option value="2">Type 2</option>
-                        <option value="3">Type 3</option>
-                        <option value="whatever">others..</option>
-                    </select>
-                </td> <!-- make list with multiple checkables -->
-            </tr>
-            <tr>
-                <td>Date:</td>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td>From:</td>
-                            <td><input type="date" value="1970-01-01"><input type="time" value="00:00"></td>
-                            <!-- make date picker -->
-                        </tr>
-                        <tr>
-                            <td>To:</td>
-                            <td><input type="date" value="2199-12-31"><input type="time" value="23:59"></td>
-                            <!-- make date picker -->
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td>Location:</td>
-                <td>
-                    <div class="searchbar">
-                        <input id="locationName" class="locationName" type="text" oninput="updateQuery(this.value)"
-                            onblur="clearLocationInterval()" onfocus="setLocationInterval()">
-                        <div id="result" class="result"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </form>
-  </div>
+                    </td> <!-- make slider -->
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Type:</td>
+                    <td colspan="2">
+                            <mat-chip-list>                                
+                                    <mat-chip>Type 1</mat-chip>
+                                    <mat-chip>Type 2</mat-chip>
+                                    <mat-chip>Type 3</mat-chip>
+                            </mat-chip-list>
+                    </td> <!-- make list with multiple checkables -->
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td colspan="2">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:">
+                            <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerFrom></mat-datepicker>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="pickerTo" placeholder="To Date:">
+                            <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                            <mat-datepicker #pickerTo></mat-datepicker>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td>
+                        <div class="searchbar">
+                            <input id="locationName" class="locationName" type="text" oninput="updateQuery(this.value)"
+                                onblur="clearLocationInterval()" onfocus="setLocationInterval()">
+                            <div id="result" class="result"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+      </div>
+</div>

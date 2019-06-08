@@ -1,9 +1,11 @@
 .filter {
-    top: 90px;
-    width: 100%;
-    max-width: 1120px;
-    position: fixed;
-    z-index: 60;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    float: right;
+    background-color: #d0d2d3; 
 }
 
 
@@ -76,6 +78,6 @@ main#filter {
     transform: rotate(-45deg);
 }
 
-.rangeslidecontainer {
-    width: 100%; /* Width of the outside container */
+.slider {
+    width: 300px; /* Width of the outside container */
 }

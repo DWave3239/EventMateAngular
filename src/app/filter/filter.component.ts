@@ -5,16 +5,13 @@ import { trigger, transition, state, animate, style, AnimationEvent } from '@ang
   selector: 'app-filter',
   animations: [
     trigger('openClose', [
-      // ...
       state('open', style({
-        height: '200px',
-        opacity: 1,
-        backgroundColor: 'yellow'
+        height: '400px',
+        opacity: 1
       })),
       state('closed', style({
-        height: '100px',
-        opacity: 0.5,
-        backgroundColor: 'green'
+        height: '0px',
+        opacity: 0.5
       })),
       transition('* => *', [
         animate('0.7s')
@@ -26,13 +23,21 @@ import { trigger, transition, state, animate, style, AnimationEvent } from '@ang
 })
 export class FilterComponent implements OnInit {
   isOpen = false;
+  constructor() { }
+
+  ngOnInit() {
+  }
 
   toggle() {
     this.isOpen = !this.isOpen;
   }
-  constructor() { }
 
-  ngOnInit() {
+  formatLabel(value: number | null) {
+    if (!value) {
+      return '0km';
+    }
+
+    return value + 'km';
   }
 
 }
