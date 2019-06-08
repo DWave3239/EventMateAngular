@@ -1,4 +1,7 @@
-# EventMateAngular
+# EventMate
+
+The latest version of the website can be viewed at the following URL: 
+https://dwave3239.github.io/EventMateAngular/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
