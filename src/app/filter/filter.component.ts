@@ -23,6 +23,7 @@ import { trigger, transition, state, animate, style, AnimationEvent } from '@ang
 })
 export class FilterComponent implements OnInit {
   isOpen = false;
+  options: string[] = ['One', 'Two', 'Three'];
   constructor() { }
 
   ngOnInit() {

@@ -32,10 +32,8 @@ main#filter {
 
 .filtercontent {
     position: absolute;
-    margin: 20px;
     padding: 20px;
-    margin-top: 0px;
-    max-width: 68em;
+    max-width: 460px;
     min-width: calc(100% - 80px);
     display: block;
 }
@@ -78,6 +76,6 @@ main#filter {
     transform: rotate(-45deg);
 }
 
-.slider {
-    width: 300px; /* Width of the outside container */
+.slider, .types, .datepicker, .locationform, .location {
+    width: 100%; /* Width of the outside container */
 }

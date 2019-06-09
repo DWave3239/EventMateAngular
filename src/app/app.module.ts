@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, 
          MatExpansionModule, MatFormFieldModule, MatNativeDateModule, 
          MatSidenavModule, MatSliderModule, MatSlideToggleModule, 
-         MatToolbarModule, MatChipsModule } from '@angular/material';
+         MatToolbarModule, MatChipsModule, MatAutocompleteModule } from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +34,8 @@ import { NavComponent } from './nav/nav.component';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
