@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, transition, state, animate, style, AnimationEvent } from '@angular/animations';
+import { LocationService } from '../location.service';
 
 @Component({
   selector: 'app-filter',
@@ -14,7 +15,7 @@ import { trigger, transition, state, animate, style, AnimationEvent } from '@ang
         opacity: 0.5
       })),
       transition('* => *', [
-        animate('0.7s')
+        animate('0.5s')
       ]),
     ]),
   ],
@@ -23,8 +24,14 @@ import { trigger, transition, state, animate, style, AnimationEvent } from '@ang
 })
 export class FilterComponent implements OnInit {
   isOpen = false;
-  options: string[] = ['One', 'Two', 'Three'];
-  constructor() { }
+  options: string[] = ['...'];
+  distance = 50;
+  fromDate : Date = new Date(Date.now()); 
+  toDate : Date = new Date(Date.now() + 7 * 86400000); //+7 days
+  isEnabled : boolean = true;
+  locationString : string = '';
+  
+  constructor(private location : LocationService) { }
 
   ngOnInit() {
   }
@@ -39,6 +46,43 @@ export class FilterComponent implements OnInit {
     }
 
     return value + 'km';
+  }
+
+  onFilterEnabledChange(event) {
+    this.isEnabled = event.checked;
+    this.applyFilter();
+  }
+
+  onDistanceChange(event) {
+    this.distance = event.value;
+    this.applyFilter();
+  }
+
+  onFromDateChange(event) {
+    if(event.value)
+      this.fromDate = event.value;
+    else this.fromDate = new Date(Date.now());
+    this.applyFilter();
+  }
+
+  onToDateChange(event) {
+    if(event.value)
+      this.toDate = event.value;
+      this.applyFilter();
+  }
+
+  onLocationChange(event) {
+    console.log(this.locationString);
+    ['1', '2'];
+  }
+
+  onSelectionChange(event) {
+    this.locationString = event.option.value;
+    this.applyFilter();
+  }
+
+  private applyFilter() {
+
   }
 
 }

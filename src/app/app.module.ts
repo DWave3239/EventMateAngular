@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
 import { FilterComponent } from './filter/filter.component';
 import { NavComponent } from './nav/nav.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { NavComponent } from './nav/nav.component';
     MatNativeDateModule,
     MatInputModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

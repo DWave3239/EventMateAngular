@@ -4,13 +4,13 @@
             <tr>
                 <td><label for="filterOn">Enable Filter&nbsp;</label></td>
                 <td colspan="2">
-                    <mat-slide-toggle></mat-slide-toggle>
+                    <mat-slide-toggle [checked]="isEnabled" (change)="onFilterEnabledChange($event)"></mat-slide-toggle>
                 </td>
             </tr>
             <tr>
                 <td>Distance:</td>
                 <td>
-                    <mat-slider class="slider" thumbLabel [displayWith]="formatLabel" value="10" min="1" max="50">
+                    <mat-slider class="slider" thumbLabel [displayWith]="formatLabel" [value]="distance" (change)="onDistanceChange($event)" min="1" max="50">
                     </mat-slider>
                 </td> <!-- make slider -->
                 <td></td>
@@ -22,6 +22,9 @@
                         <mat-chip>Type 1</mat-chip>
                         <mat-chip>Type 2</mat-chip>
                         <mat-chip>Type 3</mat-chip>
+                        <mat-chip>Type 3</mat-chip>
+                        <mat-chip>Type 4</mat-chip>
+                        <mat-chip>Type 5</mat-chip>
                     </mat-chip-list>
                 </td> <!-- make list with multiple checkables -->
             </tr>
@@ -29,12 +32,12 @@
                 <td>Date:</td>
                 <td colspan="2">
                     <mat-form-field class="datepicker">
-                        <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:">
+                        <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:" [value]="fromDate" (dateChange)="onFromDateChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
                         <mat-datepicker #pickerFrom></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field class="datepicker">
-                        <input matInput [matDatepicker]="pickerTo" placeholder="To Date:">
+                        <input matInput [matDatepicker]="pickerTo" placeholder="To Date:" [value]="toDate"  (dateInput)="onToDateChange($event)">
                         <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
                         <mat-datepicker #pickerTo></mat-datepicker>
                     </mat-form-field>
@@ -44,11 +47,11 @@
                 <td>Location:</td>
                 <td>
                     <form class="locationform">
-                        <mat-form-field class="location">
+                        <mat-form-field class="location" (keyup)="onLocationChange($event)">
                             <input type="text" placeholder="Select your location" aria-label="Number" matInput
-                                [matAutocomplete]="auto">
-                            <mat-autocomplete #auto="matAutocomplete">
-                                <mat-option *ngFor="let option of options" [value]="option">
+                                [matAutocomplete]="auto" ([ngModel])="locationString">
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)">
+                                <mat-option *ngFor="let option of options" ([ngModel])="option">
                                     {{option}}
                                 </mat-option>
                             </mat-autocomplete>
