@@ -26,12 +26,12 @@ export class FilterComponent implements OnInit {
   isOpen = false;
   options: string[] = ['...'];
   distance = 50;
-  fromDate : Date = new Date(Date.now()); 
-  toDate : Date = new Date(Date.now() + 7 * 86400000); //+7 days
-  isEnabled : boolean = true;
-  locationString : string = '';
-  
-  constructor(private location : LocationService) { }
+  fromDate: Date = new Date(Date.now());
+  toDate: Date = new Date(Date.now() + 7 * 86400000); //+7 days
+  isEnabled: boolean = true;
+  locationString: string = '';
+
+  constructor(private location: LocationService) { }
 
   ngOnInit() {
   }
@@ -59,16 +59,16 @@ export class FilterComponent implements OnInit {
   }
 
   onFromDateChange(event) {
-    if(event.value)
+    if (event.value)
       this.fromDate = event.value;
     else this.fromDate = new Date(Date.now());
     this.applyFilter();
   }
 
   onToDateChange(event) {
-    if(event.value)
+    if (event.value)
       this.toDate = event.value;
-      this.applyFilter();
+    this.applyFilter();
   }
 
   onLocationChange(event) {

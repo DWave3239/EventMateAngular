@@ -9,7 +9,7 @@ import { ViewChild } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  @ViewChild('filter') filter : FilterComponent;
+  @ViewChild('filter') filter: FilterComponent;
 
   title = 'EventMateAngular';
   city = ' your location';
@@ -17,5 +17,5 @@ export class AppComponent {
 
   toggleFilter() {
     this.filter.toggle();
-  }  
+  }
 }

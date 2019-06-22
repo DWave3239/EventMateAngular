@@ -9,11 +9,11 @@ export class LocationService {
   public lon;
   private apiKey = "1457ea73a4146f";
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.lat = 0;
     this.lon = 0;
   }
-   
+
   public getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: Position) => {
@@ -32,7 +32,7 @@ export class LocationService {
 
   private showError(error) {
     var message;
-    switch(error.code) {
+    switch (error.code) {
       case error.PERMISSION_DENIED:
         message = "User denied the request for Geolocation."
         break;
@@ -47,46 +47,46 @@ export class LocationService {
         break;
     }
     console.log(message);
-  } 
-  
+  }
+
   private degreesToRadians(degrees) {
     return degrees * Math.PI / 180;
   }
 
   public distanceInKmBetweenEarthCoordinates(lat2, lon2) {
     var earthRadiusKm = 6371;
-  
-    var dLat = this.degreesToRadians(lat2-this.lat);
-    var dLon = this.degreesToRadians(lon2-this.lon);
-  
+
+    var dLat = this.degreesToRadians(lat2 - this.lat);
+    var dLon = this.degreesToRadians(lon2 - this.lon);
+
     var lat1 = this.degreesToRadians(this.lat);
     lat2 = this.degreesToRadians(lat2);
-  
-    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    return earthRadiusKm * c;
-  } 
 
-  public setLocation(newLat, newLon) { 
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return earthRadiusKm * c;
+  }
+
+  public setLocation(newLat, newLon) {
     //if locationing does not work it is possible to set the coordinates manualy
     this.lat = newLat;
     this.lon = newLon;
   }
 
   public getCity(latCity, lonCity) {
-      this.http.get("https://eu1.locationiq.com/v1/reverse.php?key="+this.apiKey+"&lat="+latCity+"&lon="+lonCity+"&zoom=10&format=json&accept-language=de")
-        .subscribe(resp => {console.log(resp)});
-      
-      //$.ajax(settings).done(function (response) {
-        //console.log(response);
-        //document.getElementById('locationName').value = response.display_name;
-     // });
+    this.http.get("https://eu1.locationiq.com/v1/reverse.php?key=" + this.apiKey + "&lat=" + latCity + "&lon=" + lonCity + "&zoom=10&format=json&accept-language=de")
+      .subscribe(resp => { console.log(resp) });
+
+    //$.ajax(settings).done(function (response) {
+    //console.log(response);
+    //document.getElementById('locationName').value = response.display_name;
+    // });
   }
 
-  public getCoordinatesOfAddress(street, postalcode, city) {      
-      this.http.get("https://eu1.locationiq.com/v1/search.php?key="+this.apiKey+"&street="+street+"&city="+city+"&postalcode="+postalcode+"&format=json&accept-language=de")
-        .subscribe(resp => {console.log(resp)});
-      
+  public getCoordinatesOfAddress(street, postalcode, city) {
+    this.http.get("https://eu1.locationiq.com/v1/search.php?key=" + this.apiKey + "&street=" + street + "&city=" + city + "&postalcode=" + postalcode + "&format=json&accept-language=de")
+      .subscribe(resp => { console.log(resp) });
+
   }
 }

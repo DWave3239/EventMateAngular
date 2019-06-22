@@ -1,37 +1,42 @@
 <!--Header-->
-<mat-toolbar class="header">  
-    <mat-toolbar-row>
-      <span  class="topbar">
-          <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0" (click)="snav.toggle()" onclick="changeSideNavIconRotation()"/></div>
-            <div class="brandDiv">
-            </div>
-            <div class="headerSpacer">&nbsp;</div>
-        </span>
-    </mat-toolbar-row>
+<mat-toolbar class="header">
+  <mat-toolbar-row>
+    <span class="topbar">
+      <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0"
+          (click)="snav.toggle()" onclick="changeSideNavIconRotation()" /></div>
+      <div class="brandDiv">
+      </div>
+      <div class="headerSpacer">&nbsp;</div>
+    </span>
+  </mat-toolbar-row>
 </mat-toolbar>
-      
+
 <!--Nav-->
-    <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #snav mode='over' fixedInViewport="true">
-            <app-nav></app-nav>       
-        </mat-sidenav>
-<!--content-->
-        <mat-sidenav-content class="content">
-            <!--Filter-->
-            <app-filter #filter></app-filter>
-            <div class="toplowerbar">
-                <div class="headerSpacer">&nbsp;</div>
-                <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
-                    <img src="assets/images/loc.png" style="height: 35px;" />
-                </div>
-                <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
-                                (click)="toggleFilter()" /></div>
-                </div>
-            <app-eventtile></app-eventtile>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #snav mode='over' fixedInViewport="true">
+    <app-nav></app-nav>
+  </mat-sidenav>
+  <!--content-->
+  <mat-sidenav-content class="content">
+    <!--Filter-->
+    <app-filter #filter></app-filter>
+    <div class="toplowerbar">
+      <div class="headerSpacer">&nbsp;</div>
+      <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
+        <img src="assets/images/loc.png" style="height: 35px;" />
+      </div>
+      <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
+          (click)="toggleFilter()" /></div>
+    </div>
+    <app-eventtile></app-eventtile>
+  </mat-sidenav-content>
+</mat-sidenav-container>
 
 
 
 <!--Footer-->
-<mat-toolbar class="footer"><div class="footer"><p>© 2019 by Team EventMate</p></div></mat-toolbar>
+<mat-toolbar class="footer">
+  <div class="footer">
+    <p>© 2019 by Team EventMate</p>
+  </div>
+</mat-toolbar>

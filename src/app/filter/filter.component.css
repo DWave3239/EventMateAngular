@@ -1,81 +1,85 @@
 .filter {
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    z-index: 10;
-    overflow: hidden;
-    float: right;
-    background-color: #d0d2d3; 
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  float: right;
+  background-color: #d0d2d3;
 }
 
-
 main#filter {
-    background: #ffffff00; /* color doesn't matter, only alpha is relevant*/
-    position: absolute;
-    max-height: calc(100% - 45px);
-    max-width: 70em;
-    width: 100%;
-    display: none;
-    top: -10000px;
-    z-index: 25;
+  background: #ffffff00;
+  /* color doesn't matter, only alpha is relevant*/
+  position: absolute;
+  max-height: calc(100% - 45px);
+  max-width: 70em;
+  width: 100%;
+  display: none;
+  top: -10000px;
+  z-index: 25;
 }
 
 #filterunderlay {
-    background: black;
-    opacity: 0.5;
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+  background: black;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 
 .filtercontent {
-    position: absolute;
-    padding: 20px;
-    max-width: 460px;
-    min-width: calc(100% - 80px);
-    display: block;
+  position: absolute;
+  padding: 20px;
+  max-width: 460px;
+  min-width: calc(100% - 80px);
+  display: block;
 }
 
 #filtercontentpane {
-    height: 100%;
-    overflow: auto;
+  height: 100%;
+  overflow: auto;
 }
 
 .filterform td:nth-child(2) {
-    width: 100%;
+  width: 100%;
 }
 
 #filter .close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    width: 20px;
-    height: 20px;
-    opacity: 0.3;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
 }
 
 #filter .close:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 #filter .close:before, #filter .close:after {
-    position: absolute;
-    left: 9px;
-    content: ' '; /* anzuzeigender content */
-    height: 21px; /* element höhe */
-    width: 2px; /* strichdicke */
+  position: absolute;
+  left: 9px;
+  content: ' ';
+  /* anzuzeigender content */
+  height: 21px;
+  /* element höhe */
+  width: 2px;
+  /* strichdicke */
 }
 
 #filter .close:before {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 #filter .close:after {
-    transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .slider, .types, .datepicker, .locationform, .location {
-    width: 100%; /* Width of the outside container */
+  width: 100%;
+  /* Width of the outside container */
 }
