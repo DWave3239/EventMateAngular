@@ -58,6 +58,7 @@ import { EventtileComponent } from './eventtile/eventtile.component';
 import { FilterComponent } from './filter/filter.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
+import { EventsComponent } from './events/events.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AboutComponent } from './about/about.component';
     AppComponent,
     EventtileComponent,
     FilterComponent,
-    AboutComponent
+    AboutComponent,
+    EventsComponent
   ],
   imports: [
     AppRoutingModule,
