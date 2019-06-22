@@ -67,23 +67,6 @@ mat-toolbar-row {
     background-size: cover;
 }
 
-#loader {
-    top: -100000px;
-    position: absolute;
-    max-width: 1120px;
-    width: 100%;
-    height: 100%;
-    background: #00000088 url('./../assets/images/loading.gif') no-repeat center;
-    background-size: 20% auto;
-    z-index: 999;
-}
-
-#loader img {
-    padding-top: 33.3%;
-    padding-left: 33.3%;
-    height: 33.3%;
-}
-
 /* HEADER LAYOUT */
 
 .brandIcon, .filterIcon {
