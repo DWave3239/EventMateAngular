@@ -2,8 +2,9 @@
 <mat-toolbar class="header">
   <mat-toolbar-row>
     <span class="topbar">
-      <div class="menuIcon"><img src="assets/images/menu_bright.png" id="menuIconImage" class="rotate-0"
-          (click)="snav.toggle()" onclick="changeSideNavIconRotation()" /></div>
+      <button mat-flat-button (click)="snav.toggle()" class="menuButton">
+        <mat-icon class="menuIcon">menu</mat-icon>
+      </button>
       <div class="brandDiv">
       </div>
       <div class="headerSpacer">&nbsp;</div>
@@ -14,8 +15,33 @@
 <!--Nav-->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #snav mode='over' fixedInViewport="true">
-    <app-nav></app-nav>
+    <!-- <app-nav></app-nav> -->
+    <div class="sidenav">
+      <div class="login-container">
+        <mat-form-field style="width: 200px">
+          <input matInput placeholder="Enter your username" [type]="'text'">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 200px">
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+        <button mat-raised-button style="width: 200px">Login</button>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="menu-container">
+        <button mat-button>Near your location</button><br>
+        <button mat-button>Your events</button><br>
+        <button mat-button>Planned to attend</button><br>
+        <button mat-button routerLink="/" (click)="snav.toggle()">About</button><br>
+      </div>
+    </div>
   </mat-sidenav>
+
   <!--content-->
   <mat-sidenav-content class="content">
     <!--Filter-->

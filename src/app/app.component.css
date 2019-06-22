@@ -14,7 +14,7 @@
     flex: 1;
     z-index: 1;
     position: fixed;
-    top: 45px;
+     top: 45px;
     bottom: 40px;
     max-height: calc(100% - 85px);
     max-width: 1120px;
@@ -39,7 +39,7 @@ mat-toolbar-row {
 
 .header {
     top: 0px;
-    height: 45px;    
+    height: 45px;
     min-height: 40px;
 }
 
@@ -86,23 +86,9 @@ mat-toolbar-row {
 
 /* HEADER LAYOUT */
 
-.icon {
-    margin: 10px;
-    height: 25px;
-    width: 25px;
-    font-size: 1.5em;
-}
-
 .brandIcon, .filterIcon {
     height: 35px;
     padding: 5px;
-    cursor: pointer;
-}
-
-#menuIconImage {
-    width: 35px;
-    height: 35px;
-    margin: 5px;
     cursor: pointer;
 }
 
@@ -111,10 +97,22 @@ mat-toolbar-row {
     width: 45px;
 }
 
-.brandDiv, .menuIcon, .headerSpacer, .centerHeaderDiv {
+.brandDiv, .headerSpacer, .centerHeaderDiv {
     height: 45px;
     float: left;
     display: block;
+}
+
+.menuButton {
+  float: left;
+  padding: 0;
+}
+
+.menuIcon {
+
+  width: 45px !important;
+  height: 45px !important;
+  font-size: 3.1em !important;
 }
 
 .brandDiv, .centerHeaderDiv {
@@ -138,15 +136,34 @@ mat-toolbar-row {
 
 .topbar, .toplowerbar {
     height: 45px;
-    width: 100%;  
+    width: 100%;
 }
 
 .toplowerbar {
     top: 45px;
     font-size: 25px;
-    max-width: 1120px;    
+    max-width: 1120px;
     position: fixed;
 }
+
+/* NAV */
+.sidenav {
+  margin: 60px 20px;
+}
+
+.login-container {
+  margin: 20px 0px;
+}
+
+.menu-container {
+  margin: 20px 0px;
+}
+
+.menu-container>button {
+  width: 200px;
+  text-align: left;
+}
+
 
 /* Colors */
 .header {

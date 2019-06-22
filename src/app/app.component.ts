@@ -14,6 +14,12 @@ export class AppComponent {
   title = 'EventMateAngular';
   city = ' your location';
 
+  hide: boolean;
+
+  constructor() {
+    this.hide = true;
+  }
+
 
   toggleFilter() {
     this.filter.toggle();
