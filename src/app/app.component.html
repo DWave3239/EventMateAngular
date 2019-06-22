@@ -14,7 +14,7 @@
 
 <!--Nav-->
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #snav mode='over' fixedInViewport="true">
+  <mat-sidenav #snav mode='over' fixedInViewport="true" [autoFocus]="false">
     <!-- <app-nav></app-nav> -->
     <div class="sidenav">
       <div class="login-container">
@@ -34,14 +34,14 @@
       </div>
       <mat-divider></mat-divider>
       <div class="menu-container">
-        <button mat-button>Near your location</button><br>
-        <button mat-button>Your events</button><br>
-        <button mat-button>Planned to attend</button><br>
-        <button mat-button routerLink="/" (click)="snav.toggle()">About</button><br>
+        <button mat-raised-button routerLink="" (click)="snav.toggle()" color="accent">Near your location</button><br>
+        <button mat-raised-button routerLink="yourevents" (click)="snav.toggle()" color="accent">Your events</button><br>
+        <button mat-raised-button routerLink="planned" (click)="snav.toggle()" color="accent">Planned to attend</button><br>
+        <button mat-raised-button routerLink="about" (click)="snav.toggle()" color="accent">About</button><br>
+
       </div>
     </div>
   </mat-sidenav>
-
   <!--content-->
   <mat-sidenav-content class="content">
     <!--Filter-->
@@ -54,11 +54,10 @@
       <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
           (click)="toggleFilter()" /></div>
     </div>
-    <app-eventtile></app-eventtile>
+    <router-outlet></router-outlet>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
 
 <!--Footer-->
 <mat-toolbar class="footer">

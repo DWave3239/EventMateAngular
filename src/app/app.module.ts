@@ -1,5 +1,8 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module'; // Added here
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -54,15 +57,18 @@ import { AppComponent } from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
 import { FilterComponent } from './filter/filter.component';
 import { FormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EventtileComponent,
-    FilterComponent
+    FilterComponent,
+    AboutComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
