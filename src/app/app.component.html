@@ -5,9 +5,9 @@
       <button mat-flat-button (click)="snav.toggle()" class="menuButton">
         <mat-icon class="menuIcon">menu</mat-icon>
       </button>
-      <div class="brandDiv">
+      <div class="brandDiv" (click)="gotoHome()">
       </div>
-      <div class="headerSpacer">&nbsp;</div>
+      <div class="headerSpacer" (click)="gotoHome()">&nbsp;</div>
     </span>
   </mat-toolbar-row>
 </mat-toolbar>

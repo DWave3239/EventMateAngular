@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FilterComponent } from './filter/filter.component';
 import { ViewChild } from '@angular/core';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +16,16 @@ export class AppComponent {
 
   hide: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.hide = true;
   }
 
 
   toggleFilter() {
     this.filter.toggle();
+  }
+
+  gotoHome(){
+    this.router.navigate(['/']);
   }
 }
