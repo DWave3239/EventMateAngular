@@ -87,6 +87,8 @@ THE SOFTWARE.
 
 @angular/material/autocomplete
 
+@angular/material/bottom-sheet
+
 @angular/material/button
 
 @angular/material/chips
@@ -97,7 +99,11 @@ THE SOFTWARE.
 
 @angular/material/dialog
 
+@angular/material/divider
+
 @angular/material/form-field
+
+@angular/material/icon
 
 @angular/material/sidenav
 
@@ -105,7 +111,11 @@ THE SOFTWARE.
 
 @angular/material/slider
 
+@angular/material/snack-bar
+
 @angular/material/toolbar
+
+@angular/material/tooltip
 
 @angular/platform-browser
 MIT
