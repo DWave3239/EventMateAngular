@@ -107,6 +107,8 @@ THE SOFTWARE.
 
 @angular/material/icon
 
+@angular/material/list
+
 @angular/material/sidenav
 
 @angular/material/slide-toggle

@@ -70,7 +70,7 @@ export class FilterDialogComponent implements OnInit {
 
 
 
-  private applyFilter() {
+  applyFilter() {
     // TODO
   }
 
