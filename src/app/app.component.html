@@ -35,8 +35,10 @@
       <mat-divider></mat-divider>
       <div class="menu-container">
         <button mat-raised-button routerLink="" (click)="snav.toggle()" color="accent">Near your location</button><br>
-        <button mat-raised-button routerLink="yourevents" (click)="snav.toggle()" color="accent">Your events</button><br>
-        <button mat-raised-button routerLink="planned" (click)="snav.toggle()" color="accent">Planned to attend</button><br>
+        <button mat-raised-button routerLink="yourevents" (click)="snav.toggle()" color="accent">Your
+          events</button><br>
+        <button mat-raised-button routerLink="planned" (click)="snav.toggle()" color="accent">Planned to
+          attend</button><br>
         <button mat-raised-button routerLink="about" (click)="snav.toggle()" color="accent">About</button><br>
 
       </div>
@@ -52,7 +54,7 @@
         <img src="assets/images/loc.png" style="height: 35px;" />
       </div>
       <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
-          (click)="toggleFilter()" /></div>
+          (click)="openDialog()" /></div>
     </div>
     <router-outlet></router-outlet>
 
