@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EMEvent } from './models/emevent.model'
+import { EMUser } from './models/emuser.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class DataService {
 
   constructor(private _http: HttpClient) { }
 
+  // EVENTS
   // GET
   getEvent(): Observable<EMEvent[]> {
     const httpOptions = {
@@ -19,7 +21,8 @@ export class DataService {
         'Content-Type': 'application/json'
       })
     };
-    return this._http.get<EMEvent[]>(`${this.serverUrl}/events`, httpOptions);
+    let url = `${this.serverUrl}/events`;
+    return this._http.get<EMEvent[]>(url, httpOptions);
   }
 
   // POST
@@ -50,5 +53,16 @@ export class DataService {
       })
     };
     return this._http.put<EMEvent>(`${this.serverUrl}/events/${object.id}`, object, httpOptions);
+  }
+
+  // USERS
+  checkLogin(user, pwd): Observable<EMUser> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    const url = encodeURI(`${this.serverUrl}/users?username=${user}&password=${pwd}`);
+    return this._http.get<EMUser>(url, httpOptions);
   }
 }

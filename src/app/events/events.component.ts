@@ -10,76 +10,8 @@ import { Subscription } from 'rxjs';
 })
 export class EventsComponent implements OnInit {
   events: EMEvent[] = [];
-  /*events: EMEvent[] = [
-    {
-      id: 0,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "Seid ihr bereit eure Gehirne zu überladen und euch bei einem Musikerlebnis der ganz heftigen Art teilzunehmen? Dann bist du hier genau richtig und wirst jede Menge Anschluss und eine neue Lieblingsband kennenlernen. Sei dabei!",
-      asset: "assets/images/nomaam.png",
-      title: "Earthsplitter Teaser Party",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Linz, AT"
-    },
-    {
-      id: 1,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA lzunehmen? Dann bist du hier genau richtig und wirst LOREM IPSUM eine neue Lieblingsband kennenlernen. Sei dabei!",
-      asset: "assets/images/nomaam.png",
-      title: "Another boring event",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Freistadt, AT"
-    },
-    {
-      id: 2,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "LOREM FCKING IPSUM blablabla!",
-      asset: "assets/images/nomaam.png",
-      title: "Ultra nice Party",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Leonding, AT"
-    },
-    {
-      id: 3,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "Seid ihr bereit eure Gehirne zu überladen und euch bei einem Musikerlebnis der ganz heftigen Art teilzunehmen? Dann bist du hier genau richtig und wirst jede Menge Anschluss und eine neue Lieblingsband kennenlernen. Sei dabei!",
-      asset: "assets/images/nomaam.png",
-      title: "Earthsplitter Teaser Party",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Linz, AT"
-    },
-    {
-      id: 4,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA BLA lzunehmen? Dann bist du hier genau richtig und wirst LOREM IPSUM eine neue Lieblingsband kennenlernen. Sei dabei!",
-      asset: "assets/images/nomaam.png",
-      title: "Another boring event",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Freistadt, AT"
-    },
-    {
-      id: 5,
-      date: new Date(),
-      lon: 42.5,
-      lat: 18.3,
-      desc: "LOREM FCKING IPSUM blablabla!",
-      asset: "assets/images/nomaam.png",
-      title: "Ultra nice Party",
-      dateString: this.dateToString(new Date()),
-      locDesc: "Leonding, AT"
-    }
-  ]*/
 
-  constructor(public _dataService: DataService) {
+  constructor(private _dataService: DataService) {
     this.loadData();
   }
 

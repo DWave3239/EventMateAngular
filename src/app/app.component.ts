@@ -5,6 +5,8 @@ import { FilterComponent } from './filter/filter.component';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption } from '@angular/material';
+import { EMUser } from './models/emuser.model'
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption } from '@angula
 })
 export class AppComponent {
   @ViewChild('filter') filter: FilterComponent;
-  filterData: FilterDialogData = {
+  public filterData: FilterDialogData = {
     options: ['...', '......'],
     distance: 50,
     types: ['party', 'concert', 'theatre'],
@@ -27,22 +29,33 @@ export class AppComponent {
   title = 'EventMateAngular';
   city = ' your location';
 
-  loggedIn = true;
+  loggedIn = false;
 
-  user = {
-    name: "User"
-  }
+  user: EMUser;
+  username: string;
+  password: string;
 
   sitesWithoutFilters = ['/about'];
 
+  filterPic = "Off";
+
   hide: boolean;
 
-  constructor(private router: Router, public dialog: MatDialog) {
+  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService) {
     this.hide = true;
   }
 
   login(){
-    this.loggedIn = true;
+    this._dataService.checkLogin(this.username, this.password).subscribe(user => {
+      if(user[0]){
+        this.user = user[0];
+        this.loggedIn = true;
+      }else{
+        console.log(`%cUsername and Password combination not found`, `background-color: yellow`);
+      }
+    }, error => {
+      console.log(`%cUsername and Password combination not found`, `background-color: yellow`);
+    });
   }
 
   logout(){
@@ -75,7 +88,14 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      this.filterData = result;
+      if(result){
+        this.filterData = result;
+        if(result.enabled){
+          this.filterPic = "On";
+        }else{
+          this.filterPic = "Off";
+        }
+      }
     });
   }
 }

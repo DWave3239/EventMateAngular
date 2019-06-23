@@ -19,21 +19,23 @@
     <div class="sidenav">
       <div class="login-container" *ngIf="!loggedIn">
         <mat-form-field style="width: 200px">
-          <input matInput placeholder="Enter your username" [type]="'text'">
+          <input matInput placeholder="Enter your username" [type]="'text'" [(ngModel)]="username">
         </mat-form-field>
         <br>
         <mat-form-field style="width: 200px">
-          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+          <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
         <br>
-        <button mat-raised-button style="width: 200px" (click)="login()">Login</button>
+        <button mat-raised-button style="width: 200px" (click)="login()">Login</button><br>
+        <div style="width: 200px; margin-left: 45%; margin-top: 10px; margin-bottom: 10px;">OR</div>
+        <button mat-raised-button style="width: 200px" (click)="openDialog()">Register</button>
       </div>
       <div class="login-container" *ngIf="loggedIn">
-        Welcome {{user.name}}!<br><br>
+        Welcome {{user.firstName}}!<br><br>
         <button mat-raised-button style="width: 200px" (click)="logout()">Logout</button>
       </div>
       <mat-divider></mat-divider>
@@ -54,7 +56,7 @@
       <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
         <img src="assets/images/loc.png" style="height: 35px;" />
       </div>
-      <div class="filterIcon"  *ngIf="sitesWithoutFilters.indexOf(router.url) === -1"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
+      <div class="filterIcon"  *ngIf="sitesWithoutFilters.indexOf(router.url) === -1"><img src="assets/images/filter{{filterPic}}.png" height="35px" id="filterIcon"
           (click)="openDialog()" /></div>
     </div>
 
@@ -66,6 +68,6 @@
 <!--Footer-->
 <mat-toolbar class="footer">
   <div class="footer">
-    <p>© 2019 by Team EventMate - {{ router.url }}</p>
+    <p>© 2019 by Team EventMate<!-- - {{ router.url }}--></p>
   </div>
 </mat-toolbar>
