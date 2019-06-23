@@ -95,6 +95,7 @@ export class EventsComponent implements OnInit {
   }
 
   dateToString(date: Date): string {
+    if(!date) date = new Date();
     var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     return days[date.getUTCDay()] + ", " + this.zeroFill(date.getUTCDate(), 2) + "." + this.zeroFill(date.getUTCMonth()+1, 2) + "." + date.getUTCFullYear() + " " + this.zeroFill(date.getHours(), 2) + ":" + this.zeroFill(date.getMinutes(), 2);
   }

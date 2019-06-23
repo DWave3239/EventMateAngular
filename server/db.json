@@ -9,7 +9,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Earthsplitter Teaser Party",
       "dateString": null,
-      "locdesc": "Linz, AT"
+      "locDesc": "Linz, AT"
     },
     {
       "id": 1,
@@ -20,7 +20,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Another boring event",
       "dateString": null,
-      "locdesc": "Freistadt, AT"
+      "locDesc": "Freistadt, AT"
     },
     {
       "id": 2,
@@ -31,7 +31,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Ultra nice Party",
       "dateString": null,
-      "locdesc": "Leonding, AT"
+      "locDesc": "Leonding, AT"
     },
     {
       "id": 3,
@@ -42,7 +42,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Earthsplitter Teaser Party",
       "dateString": null,
-      "locdesc": "Linz, AT"
+      "locDesc": "Linz, AT"
     },
     {
       "id": 4,
@@ -53,7 +53,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Another boring event",
       "dateString": null,
-      "locdesc": "Freistadt, AT"
+      "locDesc": "Freistadt, AT"
     },
     {
       "id": 5,
@@ -64,7 +64,7 @@
       "asset": "assets/images/nomaam.png",
       "title": "Ultra nice Party",
       "dateString": null,
-      "locdesc": "Leonding, AT"
+      "locDesc": "Leonding, AT"
     }
   ]
 }

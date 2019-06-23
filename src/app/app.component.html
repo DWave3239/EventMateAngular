@@ -54,7 +54,7 @@
       <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
         <img src="assets/images/loc.png" style="height: 35px;" />
       </div>
-      <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
+      <div class="filterIcon"  *ngIf="sitesWithoutFilters.indexOf(router.url) === -1"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
           (click)="openDialog()" /></div>
     </div>
 
@@ -66,6 +66,6 @@
 <!--Footer-->
 <mat-toolbar class="footer">
   <div class="footer">
-    <p>© 2019 by Team EventMate</p>
+    <p>© 2019 by Team EventMate - {{ router.url }}</p>
   </div>
 </mat-toolbar>

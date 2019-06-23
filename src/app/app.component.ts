@@ -33,6 +33,8 @@ export class AppComponent {
     name: "User"
   }
 
+  sitesWithoutFilters = ['/about'];
+
   hide: boolean;
 
   constructor(private router: Router, public dialog: MatDialog) {
