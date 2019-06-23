@@ -17,7 +17,7 @@
   <mat-sidenav #snav mode='over' fixedInViewport="true" [autoFocus]="false">
     <!-- <app-nav></app-nav> -->
     <div class="sidenav">
-      <div class="login-container">
+      <div class="login-container" *ngIf="!loggedIn">
         <mat-form-field style="width: 200px">
           <input matInput placeholder="Enter your username" [type]="'text'">
         </mat-form-field>
@@ -30,17 +30,18 @@
           </button>
         </mat-form-field>
         <br>
-        <button mat-raised-button style="width: 200px">Login</button>
+        <button mat-raised-button style="width: 200px" (click)="login()">Login</button>
+      </div>
+      <div class="login-container" *ngIf="loggedIn">
+        Welcome {{user.name}}!<br><br>
+        <button mat-raised-button style="width: 200px" (click)="logout()">Logout</button>
       </div>
       <mat-divider></mat-divider>
       <div class="menu-container">
         <button mat-raised-button routerLink="" (click)="snav.toggle()" color="accent">Near your location</button><br>
-        <button mat-raised-button routerLink="yourevents" (click)="snav.toggle()" color="accent">Your
-          events</button><br>
-        <button mat-raised-button routerLink="planned" (click)="snav.toggle()" color="accent">Planned to
-          attend</button><br>
+        <button mat-raised-button *ngIf="loggedIn" routerLink="yourevents" (click)="snav.toggle()" color="accent">Your events</button><br *ngIf="loggedIn">
+        <button mat-raised-button *ngIf="loggedIn" routerLink="planned" (click)="snav.toggle()" color="accent">Planned to attend</button><br *ngIf="loggedIn">
         <button mat-raised-button routerLink="about" (click)="snav.toggle()" color="accent">About</button><br>
-
       </div>
     </div>
   </mat-sidenav>
@@ -56,6 +57,7 @@
       <div class="filterIcon"><img src="assets/images/filterOff.png" height="35px" id="filterIcon"
           (click)="openDialog()" /></div>
     </div>
+
     <router-outlet></router-outlet>
 
   </mat-sidenav-content>
