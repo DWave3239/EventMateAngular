@@ -53,12 +53,13 @@ import { CdkTreeModule } from '@angular/cdk/tree';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent, FilterDialog } from './app.component';
+import { AppComponent} from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
 import { FilterComponent } from './filter/filter.component';
 import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { EventsComponent } from './events/events.component';
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import { EventsComponent } from './events/events.component';
     EventtileComponent,
     FilterComponent,
     AboutComponent,
-    EventsComponent,FilterDialog
+    EventsComponent,FilterDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -124,9 +125,9 @@ import { EventsComponent } from './events/events.component';
     MatTooltipModule,
     MatTreeModule,
   ],
-  exports: [FilterDialog],
+  exports: [FilterDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [FilterDialog]
+  entryComponents: [FilterDialogComponent]
 })
 export class AppModule { }

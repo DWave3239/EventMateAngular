@@ -1,19 +1,10 @@
+import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import { FilterDialogData } from './models/filterDialogData.model';
 import { Component, Inject } from '@angular/core';
 import { FilterComponent } from './filter/filter.component';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption } from '@angular/material';
-
-export class DialogData {
-  options: string[];
-  distance: Number;
-  types: string[];
-  selectedTypes: string[];
-  fromDate: Date;
-  toDate: Date;
-  enabled: boolean;
-  locationString: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -22,7 +13,7 @@ export class DialogData {
 })
 export class AppComponent {
   @ViewChild('filter') filter: FilterComponent;
-  filterData: DialogData = {
+  filterData: FilterDialogData = {
     options: ['...', '......'],
     distance: 50,
     types: ['party', 'concert', 'theatre'],
@@ -52,7 +43,7 @@ export class AppComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(FilterDialog, {
+    const dialogRef = this.dialog.open(FilterDialogComponent, {
       width: '90%',
       data: {
         options: this.filterData.options,
@@ -72,39 +63,4 @@ export class AppComponent {
       this.filterData = result;
     });
   }
-}
-
-
-@Component({
-  selector: 'filter-dialog',
-  templateUrl: 'dialogs/filter-dialog.html',
-  styleUrls: ['dialogs/filter-dialog.css']
-})
-export class FilterDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<FilterDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  formatLabel(value: number | null) {
-    if (!value) {
-      return ' 0km ';
-    }
-
-    return ' ' + value + 'km ';
-  }
-
-  onSelectionChange(event) {
-    this.data.locationString = event.option.value;
-  }
-
-  private applyFilter() {
-    // TODO
-  }
-
 }
