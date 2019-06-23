@@ -14,12 +14,25 @@ export class AppComponent {
   title = 'EventMateAngular';
   city = ' your location';
 
+  loggedIn = true;
+
+  user = {
+    name: "User"
+  }
+
   hide: boolean;
 
   constructor(private router: Router) {
     this.hide = true;
   }
 
+  login(){
+    this.loggedIn = true;
+  }
+
+  logout(){
+    this.loggedIn = false;
+  }
 
   toggleFilter() {
     this.filter.toggle();

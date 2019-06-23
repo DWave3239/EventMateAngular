@@ -1,5 +1,7 @@
 import { EMEvent } from './../models/emevent.model';
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-events',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./events.component.css']
 })
 export class EventsComponent implements OnInit {
-  events: EMEvent[] = [
+  events: EMEvent[] = [];
+  /*events: EMEvent[] = [
     {
       id: 0,
       date: new Date(),
@@ -74,16 +77,22 @@ export class EventsComponent implements OnInit {
       dateString: this.dateToString(new Date()),
       locDesc: "Leonding, AT"
     }
-  ]
+  ]*/
 
-  constructor() {
-
+  constructor(public _dataService: DataService) {
+    this.loadData();
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
+  loadData(): void{
+    this.events = [];
+    this._dataService.getEvent().subscribe((events: EMEvent[]) => {
+      this.events = events;
+    }, error => {
+      console.log(`%cERROR: ${error.message}`, `color: red`);
+    });
   }
-
 
   private dateToString(date: Date): string {
     var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
