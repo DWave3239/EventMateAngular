@@ -73,6 +73,7 @@ export class AppComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(FilterDialogComponent, {
       width: '90%',
+      maxWidth: '1000px',
       data: {
         options: this.filterData.options,
         distance: this.filterData.distance,

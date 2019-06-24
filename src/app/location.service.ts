@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { LocationResponse } from './models/filterDialogData.model';
 
 @Injectable({
   providedIn: 'root'
@@ -89,4 +92,11 @@ export class LocationService {
       .subscribe(resp => { console.log(resp) });
 
   }
+
+  public autocomplete(query) {
+    return this.http
+      .get<LocationResponse>("https://api.locationiq.com/v1/autocomplete.php?key=" + this.apiKey + "&q=" + query + "&limit=5&normalizecity=1&accept-language=de", { observe: 'response' })
+      .pipe(map((res) => { return res.body; }));
+  }
+
 }

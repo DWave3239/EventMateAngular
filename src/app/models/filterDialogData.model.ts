@@ -8,3 +8,13 @@ export class FilterDialogData {
   enabled: boolean;
   locationString: string;
 }
+
+export declare type Items = Item[];
+
+export interface Item {
+  displayName : String;
+}
+
+export interface LocationResponse {
+  items : Items;
+}

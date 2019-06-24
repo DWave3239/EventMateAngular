@@ -2,13 +2,14 @@
   <mat-slide-toggle [checked]="data.enabled" [(ngModel)]="data.enabled">enable filter</mat-slide-toggle>
 
   <div class="filterentry">
-    <input type="text" placeholder="Select your location" aria-label="Number" matInput [matAutocomplete]="auto"
-      [(ngModel)]="data.locationString">
+    <mat-form-field class="locationform">
+    <input [formControl]="autoCompleteControl" type="text" placeholder="Select your location" aria-label="Number" matInput [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)">
-      <mat-option *ngFor="let option of data.options">
-        {{option}}
+      <mat-option *ngFor="let item of locationAutoComplete$ | async; let index = index" [value]="item.display_name">
+        {{item.display_name}}
       </mat-option>
     </mat-autocomplete>
+    </mat-form-field>
   </div>
 
   <div class="filterentry">

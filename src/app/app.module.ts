@@ -56,7 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent} from './app.component';
 import { EventtileComponent } from './eventtile/eventtile.component';
 import { FilterComponent } from './filter/filter.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { EventsComponent } from './events/events.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
@@ -124,6 +124,7 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    ReactiveFormsModule
   ],
   exports: [FilterDialogComponent],
   providers: [],
