@@ -58,19 +58,23 @@ export class LocationService {
     return degrees * Math.PI / 180;
   }
 
-  public distanceInKmBetweenEarthCoordinates(lat2:number, lon2:number) {
+  public distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2){
     var earthRadiusKm = 6371;
 
-    var dLat = this.degreesToRadians(lat2 - this.lat);
-    var dLon = this.degreesToRadians(lon2 - this.lon);
+    var dLat = this.degreesToRadians(lat2 - lat1);
+    var dLon = this.degreesToRadians(lon2 - lon1);
 
-    var lat1 = this.degreesToRadians(this.lat);
+    lat1 = this.degreesToRadians(lat1);
     lat2 = this.degreesToRadians(lat2);
 
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return earthRadiusKm * c;
+  }
+
+  public distanceInKmBetweenHere(lat2:number, lon2:number) {
+    return this.distanceInKmBetweenEarthCoordinates(this.lat, this.lon, lat2, lon2);
   }
 
   public setLocation(newLat, newLon) {

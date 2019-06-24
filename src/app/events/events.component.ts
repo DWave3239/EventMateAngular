@@ -59,9 +59,15 @@ export class EventsComponent implements OnInit {
     if(this.fdd){
       // distance check
       if(this.fdd.distance && this.fdd.distance > 0){
-        console.log(this.fdd.distance);
-        //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
-        this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat) <= this.fdd.distance);
+        if(this.fdd.lon !== null && this.fdd.lat !== null){
+          console.log(this.fdd.distance);
+          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(this.fdd.lon, this.fdd.lat) <= this.fdd.distance);
+        }else{
+          console.log(this.fdd.distance);
+          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(e.lon, e.lat) <= this.fdd.distance);
+        }
       }
 
       // from date check
@@ -81,7 +87,7 @@ export class EventsComponent implements OnInit {
       // type check
       if(this.fdd.selectedTypes){
         console.log(this.fdd.selectedTypes); // has still wrong data
-        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null);
+        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
       }
     }
   }

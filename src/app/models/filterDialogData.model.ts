@@ -7,6 +7,8 @@ export class FilterDialogData {
   toDate: Date;
   enabled: boolean;
   locationString: string;
+  lon: number;
+  lat: number;
 }
 
 export declare type Items = Item[];

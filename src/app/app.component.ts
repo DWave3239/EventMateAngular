@@ -24,7 +24,9 @@ export class AppComponent {
     fromDate: new Date(Date.now()),
     toDate: new Date(Date.now() + 7 * 86400000), //+7 days
     enabled: true,
-    locationString: ''
+    locationString: '',
+    lon: null,
+    lat: null
   }
 
   title = 'EventMateAngular';
