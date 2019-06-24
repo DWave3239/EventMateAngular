@@ -60,6 +60,7 @@ import { FormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
 import { EventsComponent } from './events/events.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
+import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 
 
 @NgModule({
@@ -68,7 +69,7 @@ import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
     EventtileComponent,
     FilterComponent,
     AboutComponent,
-    EventsComponent,FilterDialogComponent
+    EventsComponent,FilterDialogComponent, AddEventDialogComponent
   ],
   imports: [
     AppRoutingModule,
