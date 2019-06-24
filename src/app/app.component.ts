@@ -35,8 +35,9 @@ export class AppComponent {
   loggedIn = false;
 
   user: EMUser;
-  username: string;
-  password: string;
+  // REMOVE INITIALIZATION in production build
+  username: string = "test";
+  password: string = "testuser";
 
   sitesWithoutFilters = ['/about'];
 
@@ -48,12 +49,12 @@ export class AppComponent {
     this.hide = true;
   }
 
-  login(){
+  login() {
     this._dataService.checkLogin(this.username, this.password).subscribe(user => {
-      if(user[0]){
+      if (user[0]) {
         this.user = user[0];
         this.loggedIn = true;
-      }else{
+      } else {
         console.log(`%cUsername and Password combination not found`, `background-color: yellow`);
       }
     }, error => {
@@ -61,7 +62,7 @@ export class AppComponent {
     });
   }
 
-  logout(){
+  logout() {
     this.loggedIn = false;
   }
 
@@ -92,12 +93,12 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       //console.log(result);
-      if(result){
+      if (result) {
         this.filterData = result;
-        if(result.enabled){
+        if (result.enabled) {
           this._filterService.addNode(result);
           this.filterPic = "On";
-        }else{
+        } else {
           this._filterService.addNode(new FilterDialogData);
           this.filterPic = "Off";
         }
@@ -105,8 +106,8 @@ export class AppComponent {
     });
   }
 
-  public routeToHeader(route:string){
-    var routes = {'/': 'NEAR '+this.city, '/about': "About"};
+  public routeToHeader(route: string) {
+    var routes = { '/': 'NEAR ' + this.city, '/about': "About" };
     return routes[route];
   }
 }
