@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LocationResponse } from './models/filterDialogData.model';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class LocationService {
   public lon:number;
   private apiKey = "1457ea73a4146f";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
     this.lat = 0;
     this.lon = 0;
   }
@@ -27,11 +28,11 @@ export class LocationService {
           //console.log(this.lon);
           this.getCity(this.lat, this.lon);
         }else{
-          console.log("Could not aquire location!");
+          this.openSnackBar("Could not aquire location!");
         }
       }, this.showError);
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      this.openSnackBar("Geolocation is not supported by this browser.");
     }
   }
 
@@ -51,7 +52,7 @@ export class LocationService {
         message = "An unknown error occurred."
         break;
     }
-    console.log(message);
+    this.openSnackBar(message);
   }
 
   private degreesToRadians(degrees) {
@@ -96,7 +97,6 @@ export class LocationService {
   public getCoordinatesOfAddress(street, postalcode, city) {
     this.http.get("https://eu1.locationiq.com/v1/search.php?key=" + this.apiKey + "&street=" + street + "&city=" + city + "&postalcode=" + postalcode + "&format=json&accept-language=de")
       .subscribe(resp => { console.log(resp) });
-
   }
 
   public autocomplete(query) {
@@ -105,4 +105,9 @@ export class LocationService {
       .pipe(map((res) => { return res.body; }));
   }
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 3000,
+    });
+  }
 }

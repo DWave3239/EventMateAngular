@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption, MatSnackBar } 
 import { EMUser } from './models/emuser.model'
 import { DataService } from './data.service';
 import { FilterService } from './filter.service';
+import { LocationService } from './location.service';
 
 @Component({
   selector: 'app-root',
@@ -45,7 +46,8 @@ export class AppComponent {
 
   hide: boolean;
 
-  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService, private _snackBar: MatSnackBar) {
+  constructor(public router: Router, public dialog: MatDialog, private _locationService: LocationService, private _dataService: DataService, private _filterService: FilterService,
+                private _snackBar: MatSnackBar) {
     this.hide = true;
   }
 
@@ -88,13 +90,12 @@ export class AppComponent {
         fromDate: this.filterData.fromDate,
         toDate: this.filterData.toDate,
         enabled: this.filterData.enabled,
-        locationString: this.filterData.locationString
+        locationString: this.filterData.locationString,
       },
       autoFocus: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(result);
       if (result) {
         this.filterData = result;
         if (result.enabled) {

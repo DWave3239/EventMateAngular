@@ -57,36 +57,38 @@ export class EventsComponent implements OnInit {
   private applyFilter(){
     this.filteredEvents = this.events;
     if(this.fdd){
+      //console.log(this.fdd);
       // distance check
       if(this.fdd.distance && this.fdd.distance > 0){
-        if(this.fdd.lon !== null && this.fdd.lat !== null){
-          console.log(this.fdd.distance);
-          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+        if(this.fdd.lon !== null && this.fdd.lon !== undefined && this.fdd.lat !== null && this.fdd.lat !== undefined){
+          /*console.log(this.fdd.distance+" 1\nLon: "+this.fdd.lon+"\nLat: "+this.fdd.lat);
+          this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat)));*/
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat) <= this.fdd.distance);
         }else{
-          console.log(this.fdd.distance);
-          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+          /*console.log(this.fdd.distance+" 2");
+          this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenHere(e.lon, e.lat)));*/
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(e.lon, e.lat) <= this.fdd.distance);
         }
       }
 
       // from date check
       if(this.fdd.fromDate){
-        console.log(this.fdd.fromDate.getTime());
-        //this.filteredEvents.forEach(e => console.log(e.fromDate, this.fdd.fromDate));
+        /*console.log("-----------------------------\n"+this.fdd.fromDate.getTime());
+        this.filteredEvents.forEach(e => console.log(e.fromDate));*/
         this.filteredEvents = this.filteredEvents.filter(e => e.fromDate >= this.fdd.fromDate.getTime() || e.fromDate === null);
       }
 
       // to date check
       if(this.fdd.toDate){
-        console.log(this.fdd.toDate.getTime());
-        //this.filteredEvents.forEach(e => console.log(e.toDate, this.fdd.toDate));
+        /*console.log("-----------------------------\n"+this.fdd.toDate.getTime());
+        this.filteredEvents.forEach(e => console.log(e.toDate));*/
         this.filteredEvents = this.filteredEvents.filter(e => e.toDate <= this.fdd.toDate.getTime() || e.toDate === null);
       }
 
       // type check
       if(this.fdd.selectedTypes){
-        console.log(this.fdd.selectedTypes); // has still wrong data
+        /*console.log(this.fdd.selectedTypes);
+        this.filteredEvents.forEach(e => console.log(e.type));*/
         this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
       }
     }
