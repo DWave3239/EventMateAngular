@@ -8,8 +8,8 @@ import { LocationResponse } from './models/filterDialogData.model';
   providedIn: 'root'
 })
 export class LocationService {
-  public lat;
-  public lon;
+  public lat:number;
+  public lon:number;
   private apiKey = "1457ea73a4146f";
 
   constructor(private http: HttpClient) {
@@ -23,9 +23,11 @@ export class LocationService {
         if (position) {
           this.lat = position.coords.latitude;
           this.lon = position.coords.longitude;
-          console.log(this.lat);
-          console.log(this.lon);
+          //console.log(this.lat);
+          //console.log(this.lon);
           this.getCity(this.lat, this.lon);
+        }else{
+          console.log("Could not aquire location!");
         }
       }, this.showError);
     } else {
@@ -56,7 +58,7 @@ export class LocationService {
     return degrees * Math.PI / 180;
   }
 
-  public distanceInKmBetweenEarthCoordinates(lat2, lon2) {
+  public distanceInKmBetweenEarthCoordinates(lat2:number, lon2:number) {
     var earthRadiusKm = 6371;
 
     var dLat = this.degreesToRadians(lat2 - this.lat);

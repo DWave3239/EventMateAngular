@@ -65,4 +65,13 @@ export class DataService {
     const url = encodeURI(`${this.serverUrl}/users?username=${user}&password=${pwd}`);
     return this._http.get<EMUser>(url, httpOptions);
   }
+
+  registerUser(user: EMUser): Observable<EMUser> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this._http.post<EMUser>(`${this.serverUrl}/users`, user, httpOptions);
+  }
 }

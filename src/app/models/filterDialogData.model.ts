@@ -1,6 +1,6 @@
 export class FilterDialogData {
   options: string[];
-  distance: Number;
+  distance: number;
   types: string[];
   selectedTypes: string[];
   fromDate: Date;
