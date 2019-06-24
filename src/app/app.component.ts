@@ -104,4 +104,9 @@ export class AppComponent {
       }
     });
   }
+
+  public routeToHeader(route:string){
+    var routes = {'/': 'NEAR '+this.city, '/about': "About"};
+    return routes[route];
+  }
 }

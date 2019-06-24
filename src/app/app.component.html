@@ -53,8 +53,8 @@
     <app-filter #filter></app-filter>
     <div class="toplowerbar">
       <div class="headerSpacer">&nbsp;</div>
-      <div class="centerHeaderDiv" id="centerHeaderDiv">NEAR {{city}}
-        <img src="assets/images/loc.png" style="height: 35px;" />
+      <div class="centerHeaderDiv" id="centerHeaderDiv">{{routeToHeader(router.url)}}
+          <img src="assets/images/loc.png" style="height: 35px;" *ngIf="router.url === '/'"/>
       </div>
       <div class="filterIcon"  *ngIf="sitesWithoutFilters.indexOf(router.url) === -1"><img src="assets/images/filter{{filterPic}}.png" height="35px" id="filterIcon"
           (click)="openDialog()" /></div>
