@@ -62,7 +62,7 @@ export class EventsComponent implements OnInit {
         if(this.fdd.lon !== null && this.fdd.lat !== null){
           console.log(this.fdd.distance);
           //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
-          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(this.fdd.lon, this.fdd.lat) <= this.fdd.distance);
+          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat) <= this.fdd.distance);
         }else{
           console.log(this.fdd.distance);
           //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
@@ -90,5 +90,23 @@ export class EventsComponent implements OnInit {
         this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
       }
     }
+
+    this.filteredEvents.sort((a, b) => {
+      let lenA, lenB;
+      if(this.fdd.lon && this.fdd.lat && this.fdd.lon !== null && this.fdd.lat !== null){
+        lenA = this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, a.lon, a.lat);
+        lenB = this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, b.lon, b.lat);
+      }else{
+        lenA = this._locationService.distanceInKmBetweenHere(a.lon, a.lat);
+        lenB = this._locationService.distanceInKmBetweenHere(b.lon, b.lat);
+      }
+      if(lenA < lenB){
+        return -1;
+      }
+      if(lenA > lenB){
+        return 1;
+      }
+      return 0;
+    });
   }
 }
