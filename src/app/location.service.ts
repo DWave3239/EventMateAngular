@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { LocationResponse } from './models/filterDialogData.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
-  public lat;
-  public lon;
+  public lat:number;
+  public lon:number;
   private apiKey = "1457ea73a4146f";
 
   constructor(private http: HttpClient) {
@@ -20,9 +23,11 @@ export class LocationService {
         if (position) {
           this.lat = position.coords.latitude;
           this.lon = position.coords.longitude;
-          console.log(this.lat);
-          console.log(this.lon);
+          //console.log(this.lat);
+          //console.log(this.lon);
           this.getCity(this.lat, this.lon);
+        }else{
+          console.log("Could not aquire location!");
         }
       }, this.showError);
     } else {
@@ -53,19 +58,23 @@ export class LocationService {
     return degrees * Math.PI / 180;
   }
 
-  public distanceInKmBetweenEarthCoordinates(lat2, lon2) {
+  public distanceInKmBetweenEarthCoordinates(lat1, lon1, lat2, lon2){
     var earthRadiusKm = 6371;
 
-    var dLat = this.degreesToRadians(lat2 - this.lat);
-    var dLon = this.degreesToRadians(lon2 - this.lon);
+    var dLat = this.degreesToRadians(lat2 - lat1);
+    var dLon = this.degreesToRadians(lon2 - lon1);
 
-    var lat1 = this.degreesToRadians(this.lat);
+    lat1 = this.degreesToRadians(lat1);
     lat2 = this.degreesToRadians(lat2);
 
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return earthRadiusKm * c;
+  }
+
+  public distanceInKmBetweenHere(lat2:number, lon2:number) {
+    return this.distanceInKmBetweenEarthCoordinates(this.lat, this.lon, lat2, lon2);
   }
 
   public setLocation(newLat, newLon) {
@@ -89,4 +98,11 @@ export class LocationService {
       .subscribe(resp => { console.log(resp) });
 
   }
+
+  public autocomplete(query) {
+    return this.http
+      .get<LocationResponse>("https://api.locationiq.com/v1/autocomplete.php?key=" + this.apiKey + "&q=" + query + "&limit=5&normalizecity=1&accept-language=de", { observe: 'response' })
+      .pipe(map((res) => { return res.body; }));
+  }
+
 }

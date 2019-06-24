@@ -2,6 +2,9 @@ import { EMEvent } from './../models/emevent.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Subscription } from 'rxjs';
+import { FilterService } from '../filter.service';
+import { LocationService } from '../location.service';
+import { FilterDialogData } from '../models/filterDialogData.model';
 
 @Component({
   selector: 'app-events',
@@ -10,9 +13,16 @@ import { Subscription } from 'rxjs';
 })
 export class EventsComponent implements OnInit {
   events: EMEvent[] = [];
+  filteredEvents: EMEvent[] = [];
+  fdd: FilterDialogData;
 
-  constructor(private _dataService: DataService) {
+  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService) {
     this.loadData();
+    this._locationService.getLocation();
+    _filterService.getData().subscribe(fdd => {
+      this.fdd = fdd;
+      this.applyFilter();
+    });
   }
 
   ngOnInit() {}
@@ -21,14 +31,18 @@ export class EventsComponent implements OnInit {
     this.events = [];
     this._dataService.getEvent().subscribe((events: EMEvent[]) => {
       this.events = events;
+      this.applyFilter();
     }, error => {
       console.log(`%cERROR: ${error.message}`, `color: red`);
     });
   }
 
-  dateToString(date: Date): string {
-    if(!date) date = new Date();
-    var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+  dateToString(timestamp: number): string {
+    let date;
+    if(!timestamp) return "no information";
+    else           date = new Date(timestamp);
+    //var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+    var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     return days[date.getUTCDay()] + ", " + this.zeroFill(date.getUTCDate(), 2) + "." + this.zeroFill(date.getUTCMonth()+1, 2) + "." + date.getUTCFullYear() + " " + this.zeroFill(date.getHours(), 2) + ":" + this.zeroFill(date.getMinutes(), 2);
   }
 
@@ -38,5 +52,43 @@ export class EventsComponent implements OnInit {
       return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
     }
     return number + ""; // always return a string
+  }
+
+  private applyFilter(){
+    this.filteredEvents = this.events;
+    if(this.fdd){
+      // distance check
+      if(this.fdd.distance && this.fdd.distance > 0){
+        if(this.fdd.lon !== null && this.fdd.lat !== null){
+          console.log(this.fdd.distance);
+          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(this.fdd.lon, this.fdd.lat) <= this.fdd.distance);
+        }else{
+          console.log(this.fdd.distance);
+          //this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(e.lon, e.lat), this.fdd.distance));
+          this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(e.lon, e.lat) <= this.fdd.distance);
+        }
+      }
+
+      // from date check
+      if(this.fdd.fromDate){
+        console.log(this.fdd.fromDate.getTime());
+        //this.filteredEvents.forEach(e => console.log(e.fromDate, this.fdd.fromDate));
+        this.filteredEvents = this.filteredEvents.filter(e => e.fromDate >= this.fdd.fromDate.getTime() || e.fromDate === null);
+      }
+
+      // to date check
+      if(this.fdd.toDate){
+        console.log(this.fdd.toDate.getTime());
+        //this.filteredEvents.forEach(e => console.log(e.toDate, this.fdd.toDate));
+        this.filteredEvents = this.filteredEvents.filter(e => e.toDate <= this.fdd.toDate.getTime() || e.toDate === null);
+      }
+
+      // type check
+      if(this.fdd.selectedTypes){
+        console.log(this.fdd.selectedTypes); // has still wrong data
+        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
+      }
+    }
   }
 }

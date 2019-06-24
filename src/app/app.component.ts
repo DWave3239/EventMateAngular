@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption } from '@angular/material';
 import { EMUser } from './models/emuser.model'
 import { DataService } from './data.service';
+import { FilterService } from './filter.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,9 @@ export class AppComponent {
     fromDate: new Date(Date.now()),
     toDate: new Date(Date.now() + 7 * 86400000), //+7 days
     enabled: true,
-    locationString: ''
+    locationString: '',
+    lon: null,
+    lat: null
   }
 
   title = 'EventMateAngular';
@@ -41,7 +44,7 @@ export class AppComponent {
 
   hide: boolean;
 
-  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService) {
+  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService) {
     this.hide = true;
   }
 
@@ -73,6 +76,7 @@ export class AppComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(FilterDialogComponent, {
       width: '90%',
+      maxWidth: '1000px',
       data: {
         options: this.filterData.options,
         distance: this.filterData.distance,
@@ -87,15 +91,22 @@ export class AppComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      //console.log(result);
       if(result){
         this.filterData = result;
         if(result.enabled){
+          this._filterService.addNode(result);
           this.filterPic = "On";
         }else{
+          this._filterService.addNode(new FilterDialogData);
           this.filterPic = "Off";
         }
       }
     });
+  }
+
+  public routeToHeader(route:string){
+    var routes = {'/': 'NEAR '+this.city, '/about': "About"};
+    return routes[route];
   }
 }

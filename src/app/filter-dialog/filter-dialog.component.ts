@@ -1,6 +1,14 @@
 import { FilterDialogData } from './../models/filterDialogData.model';
 import { MAT_DIALOG_DATA, MatDialogRef, NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import {
+  startWith,
+  debounceTime,
+  switchMap, map, catchError
+} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { LocationService } from '../location.service';
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -16,6 +24,7 @@ const MY_DATE_FORMATS = {
 };
 
 export class MyDateAdapter extends NativeDateAdapter {
+  
   format(date: Date, displayFormat: Object): string {
     if (displayFormat == "input") {
       let day = date.getDate();
@@ -42,9 +51,12 @@ export class MyDateAdapter extends NativeDateAdapter {
   ],
 })
 export class FilterDialogComponent implements OnInit {
-
+    
+  public locationAutoComplete$: Observable<String[]> = null;
+  autoCompleteControl = new FormControl();
 
   constructor(
+    private location : LocationService,
     public dialogRef: MatDialogRef<FilterDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FilterDialogData) {
   }
@@ -54,6 +66,23 @@ export class FilterDialogComponent implements OnInit {
     this.dialogRef.backdropClick().subscribe(_ => {
       this.dialogRef.close(this.data);
     })
+
+    this.locationAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
+      startWith(''),
+      // delay emits
+      debounceTime(300),
+      // use switch map so as to cancel previous subscribed events, before creating new once
+      switchMap(value => {
+        if (value !== '') {
+          // lookup from github
+          return this.location.autocomplete(value);
+          //return of(null);
+        } else {
+          // if no value is pressent, return null
+          return of(null);
+        }
+      })
+    );
   }
 
   formatLabel(value: number | null) {
@@ -67,8 +96,6 @@ export class FilterDialogComponent implements OnInit {
   onSelectionChange(event) {
     this.data.locationString = event.option.value;
   }
-
-
 
   applyFilter() {
     // TODO

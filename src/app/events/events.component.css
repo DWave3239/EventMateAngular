@@ -5,3 +5,15 @@
 .event-header-image {
   background-size: cover;
 }
+
+.party {
+  background: linear-gradient(180deg, rgba(66,176,244,1) 0%, rgba(66,176,244,0) 100%);
+}
+
+.theatre {
+  background: linear-gradient(180deg, rgba(244,188,66,1) 0%, rgba(244,188,66,0) 100%);
+}
+
+.concert {
+  background: linear-gradient(180deg, rgba(255,112,112,1) 0%, rgba(255,112,112,0) 100%);
+}
