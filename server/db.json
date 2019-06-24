@@ -95,6 +95,27 @@
       "lastName": "User",
       "username": "test",
       "password": "testuser"
+    },
+    {
+      "id": 1,
+      "firstName": "Marvin",
+      "lastName": "Hengster",
+      "username": "marvinh",
+      "password": "k9Lo0823we"
+    },
+    {
+      "id": 2,
+      "firstName": "Marvin",
+      "lastName": "Hengster",
+      "username": "marvinh2",
+      "password": "k9Lo0823we"
+    },
+    {
+      "id": 3,
+      "firstName": "Christian",
+      "lastName": "Mayrhofer",
+      "username": "chris",
+      "password": "chris1"
     }
   ]
 }

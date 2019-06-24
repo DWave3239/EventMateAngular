@@ -1,0 +1,46 @@
+<div>
+  <table>
+      <tr>
+        <td>First Name:</td>
+        <td>
+            <mat-form-field style="width: 200px">
+              <input matInput placeholder="Enter your first name" [type]="'text'" [(ngModel)]="firstName">
+            </mat-form-field>
+          </td>
+      </tr>
+      <tr>
+        <td>Last Name:</td>
+        <td>
+          <mat-form-field style="width: 200px">
+            <input matInput placeholder="Enter your last name" [type]="'text'" [(ngModel)]="lastName">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Username:</td>
+        <td>
+          <mat-form-field style="width: 200px">
+            <input matInput placeholder="Enter your username" [type]="'text'" [(ngModel)]="username" (change)="checkUsername()" (blur)="checkUsername()">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td>
+          <mat-form-field style="width: 200px">
+            <input matInput placeholder="Enter your password" type="password" [(ngModel)]="password" (change)="checkPassword()" (blur)="checkPassword()">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>Repeat Password:</td>
+        <td><mat-form-field style="width: 200px">
+            <input matInput placeholder="Enter your password again" type="password" [(ngModel)]="password2" (change)="checkPasswords()">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2"><button mat-raised-button style="width: 200px" (click)="register()">Register</button></td>
+      </tr>
+  </table>
+</div>

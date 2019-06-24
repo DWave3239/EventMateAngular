@@ -45,7 +45,7 @@ export class AppComponent {
 
   hide: boolean;
 
-  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService,private _snackBar: MatSnackBar) {
+  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService, private _snackBar: MatSnackBar) {
     this.hide = true;
   }
 
@@ -56,15 +56,16 @@ export class AppComponent {
         this.loggedIn = true;
         this.openSnackBar('Welcome ' + this.user.firstName + '. You are now logged in.');
       } else {
-        this.openSnackBar('Username and Password combination not found');
+        this.openSnackBar('Username and Password combination not found.');
       }
     }, error => {
-      this.openSnackBar('Username and Password combination not found');
+      this.openSnackBar('Username and Password combination not found.');
     });
   }
 
   logout() {
     this.loggedIn = false;
+    this.openSnackBar('You have successfully logged out.');
   }
 
   toggleFilter() {
@@ -108,7 +109,7 @@ export class AppComponent {
   }
 
   public routeToHeader(route: string) {
-    var routes = { '/': 'NEAR ' + this.city, '/about': "About" };
+    var routes = { '/': 'NEAR ' + this.city, '/about': "About", '/register': 'User Registration'};
     return routes[route];
   }
 

@@ -32,7 +32,7 @@
         <br>
         <button mat-raised-button style="width: 200px" (click)="login()">Login</button><br>
         <div style="width: 200px; margin-left: 45%; margin-top: 10px; margin-bottom: 10px;">OR</div>
-        <button mat-raised-button style="width: 200px" (click)="openDialog()">Register</button>
+        <button mat-raised-button style="width: 200px" routerLink="register" (click)="snav.toggle()">Register</button>
       </div>
       <div class="login-container" *ngIf="loggedIn">
         Welcome {{user.firstName}}!<br><br>

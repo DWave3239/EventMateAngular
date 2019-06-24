@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';     // Add your component here
 import { AboutComponent } from './about/about.component';  // Add your component here
 import { EventsComponent } from './events/events.component';
+import { RegisterComponent } from './register/register.component';
 
 //This is my case
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 
