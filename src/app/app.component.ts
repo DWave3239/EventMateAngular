@@ -4,7 +4,7 @@ import { Component, Inject } from '@angular/core';
 import { FilterComponent } from './filter/filter.component';
 import { ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatListOption, MatSnackBar } from '@angular/material';
 import { EMUser } from './models/emuser.model'
 import { DataService } from './data.service';
 import { FilterService } from './filter.service';
@@ -45,7 +45,7 @@ export class AppComponent {
 
   hide: boolean;
 
-  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService) {
+  constructor(public router: Router, public dialog: MatDialog, private _dataService: DataService, private _filterService: FilterService,private _snackBar: MatSnackBar) {
     this.hide = true;
   }
 
@@ -54,11 +54,12 @@ export class AppComponent {
       if (user[0]) {
         this.user = user[0];
         this.loggedIn = true;
+        this.openSnackBar('Welcome ' + this.user.firstName + '. You are now logged in.');
       } else {
-        console.log(`%cUsername and Password combination not found`, `background-color: yellow`);
+        this.openSnackBar('Username and Password combination not found');
       }
     }, error => {
-      console.log(`%cUsername and Password combination not found`, `background-color: yellow`);
+      this.openSnackBar('Username and Password combination not found');
     });
   }
 
@@ -109,5 +110,11 @@ export class AppComponent {
   public routeToHeader(route: string) {
     var routes = { '/': 'NEAR ' + this.city, '/about': "About" };
     return routes[route];
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 3000,
+    });
   }
 }
