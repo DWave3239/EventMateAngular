@@ -79,10 +79,10 @@ export class EventsComponent implements OnInit {
       }
 
       // type check
-      /*if(this.fdd.types){
-        console.log(this.fdd.types); // has still wrong data
-        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.types.indexOf(e.type) >= 0 || e.type === null);
-      }*/
+      if(this.fdd.selectedTypes){
+        console.log(this.fdd.selectedTypes); // has still wrong data
+        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null);
+      }
     }
   }
 }
