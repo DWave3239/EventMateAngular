@@ -1,5 +1,5 @@
 export interface EMUser {
-  "id": Number,
+  "id": number,
   "firstName": string,
   "lastName": string,
   "username": string,
