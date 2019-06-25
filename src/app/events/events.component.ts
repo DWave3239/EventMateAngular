@@ -44,7 +44,7 @@ export class EventsComponent implements OnInit {
     if(!timestamp) return "no information";
     else           date = new Date(timestamp);
     //var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
-    var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    var days = [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     return days[date.getUTCDay()] + ", " + this.zeroFill(date.getUTCDate(), 2) + "." + this.zeroFill(date.getUTCMonth()+1, 2) + "." + date.getUTCFullYear() + " " + this.zeroFill(date.getHours(), 2) + ":" + this.zeroFill(date.getMinutes(), 2);
   }
 
