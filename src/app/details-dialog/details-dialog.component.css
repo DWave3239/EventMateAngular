@@ -24,7 +24,8 @@
 }
 
 .desc {
-  word-break: break-all;
+  word-wrap: normal;
+  overflow-x: hidden;
 }
 
 .mapButton {
