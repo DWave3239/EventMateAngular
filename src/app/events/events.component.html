@@ -1,4 +1,4 @@
-<mat-card *ngFor="let event of filteredEvents; let i=index" [ngClass]="{'event-card' : true, 'party' : event.type == 'party', 'theatre' : event.type == 'theatre', 'concert' : event.type == 'concert'}">
+<mat-card *ngFor="let event of filteredEvents; let i=index" (click)="showDetails(event.id)" [ngClass]="{'event-card' : true, 'party' : event.type == 'party', 'theatre' : event.type == 'theatre', 'concert' : event.type == 'concert'}">
   <mat-card-header>
       <div mat-card-avatar class="event-header-image" [style.backgroundImage]="'url(' + event.asset +')'"></div>
     <mat-card-title>{{event.title}}</mat-card-title>
@@ -10,10 +10,9 @@
       {{event.desc}}
     </p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
+  <!-- <mat-card-actions>
+    <button mat-button (click)="showDetails(event.id)">SHOW DETAILS</button>
+  </mat-card-actions> -->
 </mat-card>
 <div class="fab">
   <button mat-fab color="accent" (click)="addEvent()"><mat-icon>add</mat-icon></button>

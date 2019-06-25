@@ -64,6 +64,7 @@ import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.com
 import { RegisterComponent } from './register/register.component';
 import { YourEventsComponent } from './your-events/your-events.component';
 import { PlannedEventsComponent } from './planned-events/planned-events.component';
+import { DetailsDialogComponent } from './details-dialog/details-dialog.component';
 
 
 @NgModule({
@@ -72,7 +73,7 @@ import { PlannedEventsComponent } from './planned-events/planned-events.componen
     EventtileComponent,
     FilterComponent,
     AboutComponent,
-    EventsComponent,FilterDialogComponent, AddEventDialogComponent, RegisterComponent, YourEventsComponent, PlannedEventsComponent
+    EventsComponent,FilterDialogComponent, AddEventDialogComponent, RegisterComponent, YourEventsComponent, PlannedEventsComponent, DetailsDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -130,9 +131,9 @@ import { PlannedEventsComponent } from './planned-events/planned-events.componen
     MatTreeModule,
     ReactiveFormsModule
   ],
-  exports: [FilterDialogComponent, AddEventDialogComponent],
+  exports: [FilterDialogComponent, AddEventDialogComponent, DetailsDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [FilterDialogComponent, AddEventDialogComponent]
+  entryComponents: [FilterDialogComponent, AddEventDialogComponent, DetailsDialogComponent]
 })
 export class AppModule { }
