@@ -14,6 +14,21 @@
       "fromDateString": "26.06.2019 17:00",
       "toDateString": "27.06.2019 00:00",
       "locDesc": "JKU Linz, Mengerstraße, Auhof, Dornach-Auhof, Linz, Oberösterreich, 4040, Österreich"
+    },
+    {
+      "id": 2,
+      "creatorId": 3,
+      "fromDate": 1561716000000,
+      "toDate": 1561665600000,
+      "lon": 14.1507022,
+      "lat": 48.2975034,
+      "desc": "summer semester ends at the end of june. Let's celebrate it :D\n🍺for free",
+      "type": "party",
+      "asset": "assets/images/event.png",
+      "title": "End of summer semester",
+      "fromDateString": "28.06.2019 12:00",
+      "toDateString": "27.06.2019 22:00",
+      "locDesc": "JKU Universität, Altenberger Straße, Auhof, Dornach-Auhof, Linz, Oberösterreich, 4040, Österreich"
     }
   ],
   "users": [
