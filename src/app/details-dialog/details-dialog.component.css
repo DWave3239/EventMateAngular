@@ -22,3 +22,6 @@
   font-weight: bold;
 }
 
+.desc {
+  word-break: break-all;
+}

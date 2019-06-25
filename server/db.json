@@ -104,6 +104,21 @@
       "fromDateString": "0.6.2019 0:0",
       "toDateString": "0.6.2019 0:0",
       "locDesc": "Landgraf, 12, Hauptstraße, Alt-Urfahr, Urfahr, Linz, Oberösterreich, 4020, Österreich"
+    },
+    {
+      "id": 7,
+      "creatorId": 0,
+      "fromDate": 1561759200000,
+      "toDate": 1561845600000,
+      "lon": 14.2949626,
+      "lat": 48.3235064,
+      "desc": "whatever",
+      "type": "theatre",
+      "asset": "assets/images/event.png",
+      "title": "bla",
+      "fromDateString": "29.6.2019 0:0",
+      "toDateString": "30.6.2019 0:0",
+      "locDesc": "Harbachsiedlung, Leonfeldner Straße, Urfahr, Linz, Oberösterreich, 4040, Österreich"
     }
   ],
   "users": [

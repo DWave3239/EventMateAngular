@@ -9,6 +9,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { template } from '@angular/core/src/render3';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -84,12 +85,16 @@ export class AddEventDialogComponent implements OnInit {
     locDesc: ''
   }
   constructor(private _dataService: DataService,
-    private location: LocationService,
-    public dialogRef: MatDialogRef<AddEventDialogComponent>,
-    private _snackBar: MatSnackBar,
-    private _userService: UserService) { }
-
-
+      private location: LocationService,
+      public dialogRef: MatDialogRef<AddEventDialogComponent>,
+      private _snackBar: MatSnackBar,
+      private _userService: UserService,
+      private router: Router) {
+    if(!this._userService.user){
+      this.openSnackBar("You have to be logged in to add an event.");
+      this.dialogRef.close();
+    }
+  }
 
   ngOnInit() {
     this.dialogRef.backdropClick().subscribe(_ => {
@@ -117,13 +122,16 @@ export class AddEventDialogComponent implements OnInit {
   }
 
   addEvent() {
-    var tempFromDate: Date = new Date(this.fromDate.getFullYear(), this.fromDate.getMonth() + 1, this.fromDate.getDay(), this.fromHH, this.fromMM, 0, 0);
-    var tempToDate: Date = new Date(this.toDate.getFullYear(), this.toDate.getMonth() + 1, this.toDate.getDay(), this.toHH, this.toMM, 0, 0);
+    var tempFromDate: Date = new Date(this.fromDate.getFullYear(), this.fromDate.getMonth() + 1, this.fromDate.getDate(), this.fromHH, this.fromMM, 0, 0);
+    var tempToDate: Date = new Date(this.toDate.getFullYear(), this.toDate.getMonth() + 1, this.toDate.getDate(), this.toHH, this.toMM, 0, 0);
     let tempLat = this.location.lat;
     let tempLon = this.location.lon;
     let tempAsset = 'assets/images/event.png';
-    let tempFromDateString = this.fromDate.getDay() + '.' + (this.fromDate.getMonth()+1) + '.' + this.fromDate.getFullYear() + ' ' +  this.fromDate.getHours() + ':' + this.fromDate.getMinutes();
-    let tempToDateString = this.toDate.getDay() + '.' + (this.toDate.getMonth()+1) + '.' + this.toDate.getFullYear() + ' ' +  this.toDate.getHours() + ':' + this.toDate.getMinutes();
+    let tempFromDateString = this.fromDate.getDate() + '.' + (this.fromDate.getMonth()+1) + '.' + this.fromDate.getFullYear() + ' ' +  this.fromDate.getHours() + ':' + this.fromDate.getMinutes();
+    let tempToDateString = this.toDate.getDate() + '.' + (this.toDate.getMonth()+1) + '.' + this.toDate.getFullYear() + ' ' +  this.toDate.getHours() + ':' + this.toDate.getMinutes();
+
+    /*console.log(tempFromDateString, tempToDateString);
+    return;*/
 
     this.newEvent = {
       id: null,
@@ -141,7 +149,11 @@ export class AddEventDialogComponent implements OnInit {
       locDesc: this.locDesc
     }
 
-    this._dataService.postEvent(this.newEvent).subscribe(e => this.openSnackBar("Your event has been successfully added!"));
+    this._dataService.postEvent(this.newEvent).subscribe(e => {
+      this.openSnackBar("Your event has been successfully added!");
+      this.dialogRef.close();
+      this.router.navigate([this.router.url]);
+    });
   }
 
   openSnackBar(message: string) {
