@@ -1,3 +1,4 @@
+import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { FilterDialogData } from './models/filterDialogData.model';
 import { Component, Inject } from '@angular/core';
@@ -18,7 +19,7 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   @ViewChild('filter') filter: FilterComponent;
-  
+
   public filterData: FilterDialogData = {
     options: ['...', '......'],
     distance: 50,
@@ -49,7 +50,7 @@ export class AppComponent {
   hide: boolean;
 
   constructor(public router: Router, public dialog: MatDialog, private _locationService: LocationService, private _dataService: DataService, private _filterService: FilterService,
-                private _snackBar: MatSnackBar, private _userService: UserService) {
+                private _snackBar: MatSnackBar, private _userService: UserService, public addDialog: MatDialog) {
     this.hide = true;
   }
 
@@ -110,6 +111,22 @@ export class AppComponent {
           this.filterPic = "Off";
         }
       }
+    });
+  }
+
+  addEvent() {
+    this.openAddEventDialog();
+  }
+
+  openAddEventDialog() {
+    const dialogRef = this.addDialog.open(AddEventDialogComponent, {
+      width: '90%',
+      maxWidth: '1000px',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 

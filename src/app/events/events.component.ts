@@ -19,7 +19,7 @@ export class EventsComponent implements OnInit {
   filteredEvents: EMEvent[] = [];
   fdd: FilterDialogData;
 
-  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public addDialog: MatDialog, public detailsDialog: MatDialog) {
+  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public detailsDialog: MatDialog) {
     this.loadData();
     this._locationService.getLocation(); //TODO update page
     _filterService.getData().subscribe(fdd => {
@@ -57,23 +57,6 @@ export class EventsComponent implements OnInit {
     }
     return number + ""; // always return a string
   }
-
-  addEvent() {
-    this.openAddEventDialog();
-  }
-
-  openAddEventDialog() {
-    const dialogRef = this.addDialog.open(AddEventDialogComponent, {
-      width: '90%',
-      maxWidth: '1000px',
-      autoFocus: false
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-
-    });
-  }
-
 
   private applyFilter() {
     this.filteredEvents = this.events;

@@ -20,5 +20,13 @@
   width: 1px;
   white-space: nowrap;
   font-weight: bold;
+  vertical-align: top;
 }
 
+.desc {
+  word-break: break-all;
+}
+
+.mapButton {
+  width: 100%;
+}

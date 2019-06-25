@@ -24,7 +24,7 @@ const MY_DATE_FORMATS = {
 };
 
 export class MyDateAdapter extends NativeDateAdapter {
-  
+
   format(date: Date, displayFormat: Object): string {
     if (displayFormat == "input") {
       let day = date.getDate();
@@ -51,12 +51,17 @@ export class MyDateAdapter extends NativeDateAdapter {
   ],
 })
 export class FilterDialogComponent implements OnInit {
-    
+
   public locationAutoComplete$: Observable<string[]> = null;
   autoCompleteControl = new FormControl();
+<<<<<<< HEAD
+=======
+  lons: number[];
+  lats: number[];
+>>>>>>> 7e4d8757da53401be7ac9d71fb2c52cea135ba91
 
   constructor(
-    private location : LocationService,
+    private location: LocationService,
     public dialogRef: MatDialogRef<FilterDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: FilterDialogData) {
   }
@@ -85,6 +90,9 @@ export class FilterDialogComponent implements OnInit {
     );
   }
 
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
+  }
   formatLabel(value: number | null) {
     if (!value) {
       return ' 0km ';
@@ -97,5 +105,15 @@ export class FilterDialogComponent implements OnInit {
     this.data.lat = lat;
     this.data.lon = lon;
     this.data.locationString = option;
+  }
+
+  getCurrentLocation() {
+    while (this.location.lat === undefined || this.location.lon === undefined) {
+      this.delay(500).then(any => {
+      })
+    }
+    this.data.lat = this.location.lat;
+    this.data.lon = this.location.lon;
+    this.data.locationString = this.location.lat + ',' + this.location.lon;
   }
 }
