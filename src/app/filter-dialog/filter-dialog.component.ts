@@ -78,9 +78,7 @@ export class FilterDialogComponent implements OnInit {
         if (value !== '') {
           // lookup from github
           var result = this.location.autocomplete(value);
-          //result.forEach();
           return result;
-          //return of(null);
         } else {
           // if no value is pressent, return null
           return of(null);
