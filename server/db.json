@@ -1,5 +1,20 @@
 {
   "events": [
+    {
+      "id": 1,
+      "creatorId": 0,
+      "fromDate": 1561561200000,
+      "toDate": 1561586400000,
+      "lon": 14.2753792,
+      "lat": 48.3229696,
+      "desc": "This party is to commemorate the end of the Mobile Web Development course.",
+      "type": "party",
+      "asset": "assets/images/event.png",
+      "title": "Course done party",
+      "fromDateString": "26.06.2019 17:00",
+      "toDateString": "27.06.2019 00:00",
+      "locDesc": "JKU Linz, Mengerstraße, Auhof, Dornach-Auhof, Linz, Oberösterreich, 4040, Österreich"
+    }
   ],
   "users": [
     {
