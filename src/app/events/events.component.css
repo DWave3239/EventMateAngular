@@ -29,3 +29,7 @@
 .fab mat-icon {
   font-weight: bold;
 }
+
+.desc {
+  word-wrap: break-word;
+}

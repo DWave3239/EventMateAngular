@@ -4,10 +4,11 @@ import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { EMEvent } from './../models/emevent.model';
 import { DataService } from './../data.service';
-import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 import { startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { template } from '@angular/core/src/render3';
+import { UserService } from '../user.service';
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -84,7 +85,9 @@ export class AddEventDialogComponent implements OnInit {
   }
   constructor(private _dataService: DataService,
     private location: LocationService,
-    public dialogRef: MatDialogRef<AddEventDialogComponent>) { }
+    public dialogRef: MatDialogRef<AddEventDialogComponent>,
+    private _snackBar: MatSnackBar,
+    private _userService: UserService) { }
 
 
 
@@ -124,7 +127,7 @@ export class AddEventDialogComponent implements OnInit {
 
     this.newEvent = {
       id: null,
-      creatorId: 0,
+      creatorId: this._userService.user.id,
       fromDate: this.fromDate.getTime(),
       toDate: this.toDate.getTime(),
       lon: tempLon,
@@ -138,7 +141,12 @@ export class AddEventDialogComponent implements OnInit {
       locDesc: this.locDesc
     }
 
-    this._dataService.postEvent(this.newEvent);
+    this._dataService.postEvent(this.newEvent).subscribe(e => this.openSnackBar("Your event has been successfully added!"));
   }
 
+  openSnackBar(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 3000,
+    });
+  }
 }
