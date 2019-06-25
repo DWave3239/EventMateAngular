@@ -20,8 +20,13 @@ export class DataService {
 
   // EVENTS
   // GET
-  getEvent(): Observable<EMEvent[]> {
-    let url = `${this.serverUrl}/events`;
+  getUpcomingEvent(): Observable<EMEvent[]> {
+    let url = encodeURI(`${this.serverUrl}/events`);
+    return this._http.get<EMEvent[]>(url, this.httpOptions);
+  }
+
+  getUserEvents(id: number) {
+    let url = encodeURI(`${this.serverUrl}/events?creatorId=${id}`);
     return this._http.get<EMEvent[]>(url, this.httpOptions);
   }
 

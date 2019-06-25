@@ -62,6 +62,8 @@ import { EventsComponent } from './events/events.component';
 import { FilterDialogComponent } from './filter-dialog/filter-dialog.component';
 import { AddEventDialogComponent } from './add-event-dialog/add-event-dialog.component';
 import { RegisterComponent } from './register/register.component';
+import { YourEventsComponent } from './your-events/your-events.component';
+import { PlannedEventsComponent } from './planned-events/planned-events.component';
 
 
 @NgModule({
@@ -70,7 +72,7 @@ import { RegisterComponent } from './register/register.component';
     EventtileComponent,
     FilterComponent,
     AboutComponent,
-    EventsComponent,FilterDialogComponent, AddEventDialogComponent, RegisterComponent
+    EventsComponent,FilterDialogComponent, AddEventDialogComponent, RegisterComponent, YourEventsComponent, PlannedEventsComponent
   ],
   imports: [
     AppRoutingModule,

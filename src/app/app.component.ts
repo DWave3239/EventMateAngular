@@ -9,6 +9,7 @@ import { EMUser } from './models/emuser.model'
 import { DataService } from './data.service';
 import { FilterService } from './filter.service';
 import { LocationService } from './location.service';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -47,7 +48,7 @@ export class AppComponent {
   hide: boolean;
 
   constructor(public router: Router, public dialog: MatDialog, private _locationService: LocationService, private _dataService: DataService, private _filterService: FilterService,
-                private _snackBar: MatSnackBar) {
+                private _snackBar: MatSnackBar, private _userService: UserService) {
     this.hide = true;
   }
 
@@ -55,6 +56,7 @@ export class AppComponent {
     this._dataService.checkLogin(this.username, this.password).subscribe(user => {
       if (user[0]) {
         this.user = user[0];
+        this._userService.user = user[0];
         this.loggedIn = true;
         this.openSnackBar('Welcome ' + this.user.firstName + '. You are now logged in.');
       } else {
@@ -68,6 +70,7 @@ export class AppComponent {
   logout() {
     this.loggedIn = false;
     this.openSnackBar('You have successfully logged out.');
+    this.gotoHome();
   }
 
   toggleFilter() {

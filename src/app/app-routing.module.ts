@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';     // Add your component here
 import { AboutComponent } from './about/about.component';  // Add your component here
 import { EventsComponent } from './events/events.component';
 import { RegisterComponent } from './register/register.component';
+import { YourEventsComponent } from './your-events/your-events.component';
 
 //This is my case
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'yourEvents',
+    component: YourEventsComponent
   }
 ];
 

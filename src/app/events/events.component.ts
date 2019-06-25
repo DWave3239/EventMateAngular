@@ -29,8 +29,8 @@ export class EventsComponent implements OnInit {
 
   loadData(): void{
     this.events = [];
-    this._dataService.getEvent().subscribe((events: EMEvent[]) => {
-      this.events = events;
+    this._dataService.getUpcomingEvent().subscribe((events: EMEvent[]) => {
+      this.events = events.filter(e => e.toDate === null || e.toDate >= new Date().getTime());
       this.applyFilter();
     }, error => {
       console.log(`%cERROR: ${error.message}`, `color: red`);
