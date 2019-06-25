@@ -31,3 +31,7 @@
 .mapButton {
   width: 100%;
 }
+
+.event-header-image {
+  background-size: cover;
+}

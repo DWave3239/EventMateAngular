@@ -1,6 +1,7 @@
 <button mat-icon-button class="closeCorner" (click)="close()" color="accent">
   <mat-icon>close</mat-icon>
 </button>
+<div mat-card-avatar class="event-header-image" [style.backgroundImage]="'url(' + event.asset +')'"></div>
 <h1 mat-dialog-title>{{event.title}}</h1>
 <div mat-dialog-content>
   <mat-chip-list>
