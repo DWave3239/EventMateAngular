@@ -127,11 +127,12 @@ export class AddEventDialogComponent implements OnInit {
     let tempLat = this.location.lat;
     let tempLon = this.location.lon;
     let tempAsset = 'assets/images/event.png';
-    let tempFromDateString = this.fromDate.getDate() + '.' + (this.fromDate.getMonth()+1) + '.' + this.fromDate.getFullYear() + ' ' +  this.fromDate.getHours() + ':' + this.fromDate.getMinutes();
-    let tempToDateString = this.toDate.getDate() + '.' + (this.toDate.getMonth()+1) + '.' + this.toDate.getFullYear() + ' ' +  this.toDate.getHours() + ':' + this.toDate.getMinutes();
-
-    /*console.log(tempFromDateString, tempToDateString);
-    return;*/
+    this.fromDate.setHours(this.fromHH);
+    this.fromDate.setMinutes(this.fromMM);
+    this.toDate.setHours(this.toHH);
+    this.toDate.setMinutes(this.toMM);
+    let tempFromDateString = this.zeroFill(this.fromDate.getDate(), 2) + '.' + this.zeroFill(this.fromDate.getMonth()+1, 2) + '.' + this.fromDate.getFullYear() + ' ' +  this.zeroFill(this.fromDate.getHours(), 2) + ':' + this.zeroFill(this.fromDate.getMinutes(), 2);
+    let tempToDateString = this.zeroFill(this.toDate.getDate(), 2) + '.' + this.zeroFill(this.toDate.getMonth()+1, 2) + '.' + this.toDate.getFullYear() + ' ' +  this.zeroFill(this.toDate.getHours(), 2) + ':' + this.zeroFill(this.toDate.getMinutes(), 2);
 
     this.newEvent = {
       id: null,
@@ -160,5 +161,13 @@ export class AddEventDialogComponent implements OnInit {
     this._snackBar.open(message, null, {
       duration: 3000,
     });
+  }
+
+  private zeroFill(number, width): string {
+    width -= number.toString().length;
+    if (width > 0) {
+      return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return number + ""; // always return a string
   }
 }

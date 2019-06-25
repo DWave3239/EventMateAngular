@@ -20,3 +20,18 @@ mat-slider {
   width: 48%;
   margin: 0px auto;
 }
+
+.party {
+  background: linear-gradient(90deg, rgba(66,176,244,1) 0%, rgba(66,176,244,0) 100%) !important;
+  border-radius: 30px 0 0 30px;
+}
+
+.theatre {
+  background: linear-gradient(90deg, rgba(244,188,66,1) 0%, rgba(244,188,66,0) 100%) !important;
+  border-radius: 30px 0 0 30px;
+}
+
+.concert {
+  background: linear-gradient(90deg, rgba(255,112,112,1) 0%, rgba(255,112,112,0) 100%) !important;
+  border-radius: 30px 0 0 30px;
+}
