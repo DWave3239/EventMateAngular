@@ -18,6 +18,7 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   @ViewChild('filter') filter: FilterComponent;
+  
   public filterData: FilterDialogData = {
     options: ['...', '......'],
     distance: 50,

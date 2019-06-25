@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material';
+import { AddEventDialogComponent } from './../add-event-dialog/add-event-dialog.component';
 import { EMEvent } from './../models/emevent.model';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
@@ -16,7 +18,7 @@ export class EventsComponent implements OnInit {
   filteredEvents: EMEvent[] = [];
   fdd: FilterDialogData;
 
-  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService) {
+  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public dialog: MatDialog) {
     this.loadData();
     this._locationService.getLocation(); //TODO update page
     _filterService.getData().subscribe(fdd => {
@@ -53,6 +55,23 @@ export class EventsComponent implements OnInit {
     }
     return number + ""; // always return a string
   }
+
+  addEvent(){
+    this.openAddEventDialog();
+  }
+
+  openAddEventDialog(){
+      const dialogRef = this.dialog.open(AddEventDialogComponent, {
+      width: '90%',
+      maxWidth: '1000px',
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+    });
+  }
+
 
   private applyFilter(){
     this.filteredEvents = this.events;

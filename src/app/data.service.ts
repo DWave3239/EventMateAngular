@@ -32,6 +32,8 @@ export class DataService {
 
   // POST
   postEvent(object: EMEvent): Observable<EMEvent> {
+    console.log(object);
+
     return this._http.post<EMEvent>(`${this.serverUrl}/events`, object, this.httpOptions);
   }
 

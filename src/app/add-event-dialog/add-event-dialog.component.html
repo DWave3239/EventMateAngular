@@ -1,3 +1,76 @@
-<p>
-  add-event-dialog works!
-</p>
+<div class="addEventDialog">
+  <h1 mat-dialog-title>Add new event</h1>
+  <div class="addEventEntry">
+    <mat-form-field class="titleform">
+      <input type="text" placeholder="Title" aria-label="Number" matInput [ngModel]="title">
+    </mat-form-field>
+  </div>
+
+  <div class="addEventEntry">
+    <mat-form-field class="typeselector">
+      <mat-label>Type</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let type of types" name="option" ngDefaultControl [(ngModel)]="type" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="addEventEntry">
+    <div class="date">
+      <mat-form-field class="datepicker">
+        <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:" [value]="fromDate"
+          [(ngModel)]="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="time">
+      <mat-form-field class="timeHH">
+        <input matInput type="tel" placeholder="HH" aria-label="Number" maxlength="2" [ngModel]="fromHH">
+      </mat-form-field>
+      :
+      <mat-form-field class="timeMM">
+        <input matInput type="tel" placeholder="MM" aria-label="Number" maxlength="2" [ngModel]="fromMM">
+      </mat-form-field>
+    </div>
+    <div class="date">
+      <mat-form-field class="datepicker">
+        <input matInput [matDatepicker]="pickerTo" placeholder="To Date:" [value]="toDate"
+          [(ngModel)]="toDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="time">
+      <mat-form-field class="timeHH">
+        <input matInput type="tel" placeholder="HH" aria-label="Number" maxlength="2" [ngModel]="toHH">
+      </mat-form-field>
+      :
+      <mat-form-field class="timeMM">
+        <input matInput type="tel" placeholder="MM" aria-label="Number" maxlength="2" [ngModel]="toMM">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="addEventEntry">
+    <mat-form-field class="locationform">
+      <input [formControl]="autoCompleteControl" type="text" placeholder="Event Location" aria-label="Number" matInput
+        [matAutocomplete]="auto" [ngModel]="locDesc">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name">
+          {{item.display_name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <div class="addEventEntry">
+    <mat-form-field class="descFormField">
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5" placeholder="Description" [(ngModel)]="desc"></textarea>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button class="addEventButton" (click)="addEvent()" color="accent">Add</button>
+</div>
