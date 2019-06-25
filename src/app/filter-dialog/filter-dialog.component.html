@@ -5,9 +5,9 @@
     <mat-form-field class="locationform">
       <input [formControl]="autoCompleteControl" type="text" placeholder="Select your Location" aria-label="Number"
         matInput [matAutocomplete]="auto" [(ngModel)]="data.locationString">
-        <button mat-button matSuffix mat-icon-button aria-label="location" (click)="getCurrentLocation()">
-            <mat-icon>my_location</mat-icon>
-          </button>
+      <button mat-button matSuffix mat-icon-button aria-label="location" (click)="getCurrentLocation()">
+        <mat-icon>my_location</mat-icon>
+      </button>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name"
           (click)="onSelectionChange(item.display_name, item.lon, item.lat)">
@@ -27,7 +27,8 @@
   <div class="filterentry">
     Event Type ({{typesList.selectedOptions.selected.length}} selected)<br>
     <mat-selection-list #typesList [(ngModel)]="data.selectedTypes">
-      <mat-list-option *ngFor="let type of data.types" [value]="type">
+      <mat-list-option *ngFor="let type of data.types" [value]="type"
+        [ngClass]="{'concert': type == 'concert', party: type == 'party', theatre: type == 'theatre'}">
         {{type}}
       </mat-list-option>
     </mat-selection-list>
