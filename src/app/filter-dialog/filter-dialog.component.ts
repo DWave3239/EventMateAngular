@@ -87,6 +87,9 @@ export class FilterDialogComponent implements OnInit {
     );
   }
 
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
+  }
   formatLabel(value: number | null) {
     if (!value) {
       return ' 0km ';
@@ -102,8 +105,12 @@ export class FilterDialogComponent implements OnInit {
   }
 
   getCurrentLocation() {
-    if (this.data.lat !== undefined && this.data.lon !== undefined) {
-      this.data.locationString = this.data.lat + ',' + this.data.lon;
+    while (this.location.lat === undefined || this.location.lon === undefined) {
+      this.delay(500).then(any => {
+      })
     }
+    this.data.lat = this.location.lat;
+    this.data.lon = this.location.lon;
+    this.data.locationString = this.location.lat + ',' + this.location.lon;
   }
 }
