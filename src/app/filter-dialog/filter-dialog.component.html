@@ -3,9 +3,9 @@
 
   <div class="filterentry">
     <mat-form-field class="locationform">
-    <input [formControl]="autoCompleteControl" type="text" placeholder="Select your location" aria-label="Number" matInput [matAutocomplete]="auto">
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onSelectionChange($event)">
-      <mat-option *ngFor="let item of locationAutoComplete$ | async; let index = index" [value]="item.display_name">
+    <input [formControl]="autoCompleteControl" type="text" placeholder="Select your Location" aria-label="Number" matInput [matAutocomplete]="auto" [ngModel]="data.locationString">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name" (click)="onSelectionChange(item.display_name, item.lon, lon)">
         {{item.display_name}}
       </mat-option>
     </mat-autocomplete>

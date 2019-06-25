@@ -101,7 +101,7 @@ export class LocationService {
 
   public autocomplete(query) {
     return this.http
-      .get<LocationResponse>("https://api.locationiq.com/v1/autocomplete.php?key=" + this.apiKey + "&q=" + query + "&limit=5&normalizecity=1&accept-language=de", { observe: 'response' })
+      .get<String>("https://api.locationiq.com/v1/autocomplete.php?key=" + this.apiKey + "&q=" + query + "&limit=5&normalizecity=1&accept-language=de", { observe: 'response' })
       .pipe(map((res) => { return res.body; }));
   }
 

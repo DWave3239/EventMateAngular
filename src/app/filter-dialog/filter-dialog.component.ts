@@ -52,8 +52,10 @@ export class MyDateAdapter extends NativeDateAdapter {
 })
 export class FilterDialogComponent implements OnInit {
     
-  public locationAutoComplete$: Observable<String[]> = null;
+  public locationAutoComplete$: Observable<string[]> = null;
   autoCompleteControl = new FormControl();
+  lons : number[];
+  lats : number[];
 
   constructor(
     private location : LocationService,
@@ -75,7 +77,9 @@ export class FilterDialogComponent implements OnInit {
       switchMap(value => {
         if (value !== '') {
           // lookup from github
-          return this.location.autocomplete(value);
+          var result = this.location.autocomplete(value);
+          //result.forEach();
+          return result;
           //return of(null);
         } else {
           // if no value is pressent, return null
@@ -93,12 +97,9 @@ export class FilterDialogComponent implements OnInit {
     return ' ' + value + 'km ';
   }
 
-  onSelectionChange(event) {
-    this.data.locationString = event.option.value;
+  onSelectionChange(option, lon, lat) {
+    this.data.lat = lon;
+    this.data.lon = lat;
+    this.data.locationString = option;
   }
-
-  applyFilter() {
-    // TODO
-  }
-
 }

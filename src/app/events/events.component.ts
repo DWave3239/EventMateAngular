@@ -18,7 +18,7 @@ export class EventsComponent implements OnInit {
 
   constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService) {
     this.loadData();
-    this._locationService.getLocation();
+    this._locationService.getLocation(); //TODO update page
     _filterService.getData().subscribe(fdd => {
       this.fdd = fdd;
       this.applyFilter();
