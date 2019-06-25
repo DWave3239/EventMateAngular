@@ -5,7 +5,7 @@
     <mat-form-field class="locationform">
     <input [formControl]="autoCompleteControl" type="text" placeholder="Select your Location" aria-label="Number" matInput [matAutocomplete]="auto" [ngModel]="data.locationString">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name" (click)="onSelectionChange(item.display_name, item.lon, lon)">
+      <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name" (click)="onSelectionChange(item.display_name, item.lon, item.lat)">
         {{item.display_name}}
       </mat-option>
     </mat-autocomplete>
