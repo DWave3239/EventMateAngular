@@ -86,10 +86,10 @@ export class EventsComponent implements OnInit {
       }
 
       // type check
-      if(this.fdd.selectedTypes){
+      if(this.fdd.selectedTypes !== undefined){
         /*console.log(this.fdd.selectedTypes);
         this.filteredEvents.forEach(e => console.log(e.type));*/
-        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
+        this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "" || e.type === undefined);
       }
     }
 
@@ -110,5 +110,7 @@ export class EventsComponent implements OnInit {
       }
       return 0;
     });
+
+
   }
 }
