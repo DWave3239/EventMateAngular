@@ -3,12 +3,17 @@
 
   <div class="filterentry">
     <mat-form-field class="locationform">
-    <input [formControl]="autoCompleteControl" type="text" placeholder="Select your Location" aria-label="Number" matInput [matAutocomplete]="auto" [ngModel]="data.locationString">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name" (click)="onSelectionChange(item.display_name, item.lon, lon)">
-        {{item.display_name}}
-      </mat-option>
-    </mat-autocomplete>
+      <input [formControl]="autoCompleteControl" type="text" placeholder="Select your Location" aria-label="Number"
+        matInput [matAutocomplete]="auto" [(ngModel)]="data.locationString">
+        <button mat-button matSuffix mat-icon-button aria-label="location" (click)="getCurrentLocation()">
+            <mat-icon>my_location</mat-icon>
+          </button>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name"
+          (click)="onSelectionChange(item.display_name, item.lon, lon)">
+          {{item.display_name}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
   </div>
 
@@ -43,6 +48,5 @@
     </mat-form-field>
   </div>
 
-  <button mat-raised-button class="applyFilterButton" [mat-dialog-close]="data"
-    color="accent">Apply</button>
+  <button mat-raised-button class="applyFilterButton" [mat-dialog-close]="data" color="accent">Apply</button>
 </div>
