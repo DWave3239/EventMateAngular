@@ -54,11 +54,6 @@ export class FilterDialogComponent implements OnInit {
 
   public locationAutoComplete$: Observable<string[]> = null;
   autoCompleteControl = new FormControl();
-<<<<<<< HEAD
-=======
-  lons: number[];
-  lats: number[];
->>>>>>> 7e4d8757da53401be7ac9d71fb2c52cea135ba91
 
   constructor(
     private location: LocationService,
