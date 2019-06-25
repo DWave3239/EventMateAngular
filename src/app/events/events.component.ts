@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { FilterService } from '../filter.service';
 import { LocationService } from '../location.service';
 import { FilterDialogData } from '../models/filterDialogData.model';
+import { NewEventService } from '../new-event.service';
 
 @Component({
   selector: 'app-events',
@@ -19,12 +20,15 @@ export class EventsComponent implements OnInit {
   filteredEvents: EMEvent[] = [];
   fdd: FilterDialogData;
 
-  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public detailsDialog: MatDialog) {
+  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public detailsDialog: MatDialog, private _newEventService: NewEventService) {
     this.loadData();
     this._locationService.getLocation(); //TODO update page
     _filterService.getData().subscribe(fdd => {
       this.fdd = fdd;
       this.applyFilter();
+    });
+    this._newEventService.events$().subscribe(e => {
+      this.loadData();
     });
   }
 
@@ -114,8 +118,6 @@ export class EventsComponent implements OnInit {
       }
       return 0;
     });
-
-
   }
 
   showDetails(id: number) {

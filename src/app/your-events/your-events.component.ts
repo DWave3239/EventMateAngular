@@ -4,6 +4,7 @@ import { EMEvent } from '../models/emevent.model';
 import { EMUser } from '../models/emuser.model';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { NewEventService } from '../new-event.service';
 
 @Component({
   selector: 'app-your-events',
@@ -15,16 +16,12 @@ export class YourEventsComponent implements OnInit {
   events: EMEvent[];
   eventsDone: EMEvent[];
 
-  constructor(private _userService: UserService, private _dataService: DataService, private router: Router) {
+  constructor(private _userService: UserService, private _dataService: DataService, private router: Router, private _newEventService: NewEventService) {
     this.user = this._userService.user;
     if(this.user){
-      this._dataService.getUserEvents(this.user.id).subscribe((events: EMEvent[]) => {
-        this.events = events.filter(e => e.toDate === null || e.toDate >= new Date().getTime());
-        this.eventsDone = events.filter(e => e.toDate < new Date().getTime());
-        this.events.sort(this.compare);
-        this.eventsDone.sort(this.compare);
-      }, error => {
-        console.log(`%cERROR: ${error.message}`, `color: red`);
+      this.loadData();
+      this._newEventService.events$().subscribe(e => {
+        this.loadData();
       });
     }else{
       this.router.navigate(['/']);
@@ -59,6 +56,17 @@ export class YourEventsComponent implements OnInit {
       return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
     }
     return number + ""; // always return a string
+  }
+
+  private loadData(){
+    this._dataService.getUserEvents(this.user.id).subscribe((events: EMEvent[]) => {
+      this.events = events.filter(e => e.toDate === null || e.toDate >= new Date().getTime());
+      this.eventsDone = events.filter(e => e.toDate < new Date().getTime());
+      this.events.sort(this.compare);
+      this.eventsDone.sort(this.compare);
+    }, error => {
+      console.log(`%cERROR: ${error.message}`, `color: red`);
+    });
   }
 
 }

@@ -21,7 +21,8 @@ export class DataService {
   // EVENTS
   // GET
   getUpcomingEvent(): Observable<EMEvent[]> {
-    let url = encodeURI(`${this.serverUrl}/events`);
+    const now = new Date().getTime();
+    let url = encodeURI(`${this.serverUrl}/events?fromDate_gte=${now}`);
     return this._http.get<EMEvent[]>(url, this.httpOptions);
   }
 

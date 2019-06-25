@@ -65,6 +65,8 @@ import { RegisterComponent } from './register/register.component';
 import { YourEventsComponent } from './your-events/your-events.component';
 import { PlannedEventsComponent } from './planned-events/planned-events.component';
 import { DetailsDialogComponent } from './details-dialog/details-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -129,7 +131,8 @@ import { DetailsDialogComponent } from './details-dialog/details-dialog.componen
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [FilterDialogComponent, AddEventDialogComponent, DetailsDialogComponent],
   providers: [],

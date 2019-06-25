@@ -29,6 +29,49 @@
       "fromDateString": "28.06.2019 12:00",
       "toDateString": "27.06.2019 22:00",
       "locDesc": "JKU Universität, Altenberger Straße, Auhof, Dornach-Auhof, Linz, Oberösterreich, 4040, Österreich"
+    },
+    {
+      "id": 3,
+      "creatorId": 3,
+      "fromDate": 1561140000000,
+      "toDate": 1561154400000,
+      "lon": 14.2949287,
+      "lat": 48.3235356,
+      "desc": "Very cool concert from a very cool band.\nIs gonna be a total highlight.",
+      "type": "concert",
+      "asset": "assets/images/event.png",
+      "title": "Last week concert",
+      "fromDateString": "21.06.2019 20:00",
+      "toDateString": "22.06.2019 00:00",
+      "locDesc": "Viper Room Vienna, 38, Landstraßer Hauptstraße, Botschaftsviertel, KG Landstraße, Wien, Wien, 1030, Österreich"
+    },
+    {
+      "id": 4,
+      "creatorId": 0,
+      "fromDate": 1561561200000,
+      "toDate": 1561586400000,
+      "lon": 14.2753792,
+      "lat": 48.3229696,
+      "desc": "Testevent",
+      "type": "theatre",
+      "asset": "assets/images/event.png",
+      "title": "TestAdd",
+      "fromDateString": "26.06.2019 17:00",
+      "toDateString": "27.06.2019 00:00"
+    },
+    {
+      "id": 5,
+      "creatorId": 0,
+      "fromDate": 1561629600000,
+      "toDate": 1561672800000,
+      "lon": 14.294914599999998,
+      "lat": 48.323531499999994,
+      "type": "concert",
+      "asset": "assets/images/event.png",
+      "title": "Another one",
+      "fromDateString": "27.06.2019 12:00",
+      "toDateString": "28.06.2019 00:00",
+      "locDesc": "Wherever He Wants, Main Street, North Little Rock, Arkansas, 72201, Vereinigte Staaten von Amerika"
     }
   ],
   "users": [

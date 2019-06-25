@@ -10,6 +10,7 @@ import { startWith, debounceTime, switchMap } from 'rxjs/operators';
 import { template } from '@angular/core/src/render3';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { NewEventService } from '../new-event.service';
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -89,7 +90,8 @@ export class AddEventDialogComponent implements OnInit {
       public dialogRef: MatDialogRef<AddEventDialogComponent>,
       private _snackBar: MatSnackBar,
       private _userService: UserService,
-      private router: Router) {
+      private router: Router,
+      private _newEventService: NewEventService) {
     if(!this._userService.user){
       this.openSnackBar("You have to be logged in to add an event.");
       this.dialogRef.close();
@@ -152,6 +154,7 @@ export class AddEventDialogComponent implements OnInit {
 
     this._dataService.postEvent(this.newEvent).subscribe(e => {
       this.openSnackBar("Your event has been successfully added!");
+      this._newEventService.newEvent(e);
       this.dialogRef.close();
       this.router.navigate([this.router.url]);
     });
