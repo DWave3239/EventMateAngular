@@ -10,7 +10,7 @@ export class EMEvent {
   desc: string;
   type: string;
   asset: string;
-  title: string;
+  title: string;//
   fromDateString: string;
   toDateString: string;
   locDesc: string;;

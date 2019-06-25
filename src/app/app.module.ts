@@ -130,9 +130,9 @@ import { PlannedEventsComponent } from './planned-events/planned-events.componen
     MatTreeModule,
     ReactiveFormsModule
   ],
-  exports: [FilterDialogComponent],
+  exports: [FilterDialogComponent, AddEventDialogComponent],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [FilterDialogComponent]
+  entryComponents: [FilterDialogComponent, AddEventDialogComponent]
 })
 export class AppModule { }
