@@ -104,6 +104,21 @@
       "fromDateString": "0.6.2019 0:0",
       "toDateString": "0.6.2019 0:0",
       "locDesc": "Landgraf, 12, Hauptstraße, Alt-Urfahr, Urfahr, Linz, Oberösterreich, 4020, Österreich"
+    },
+    {
+      "id": 7,
+      "creatorId": 0,
+      "fromDate": 1559858400000,
+      "toDate": 1561672800000,
+      "lon": 14.1507022,
+      "lat": 48.2975034,
+      "desc": "dsafsdfsdsdafsd",
+      "type": "concert",
+      "asset": "assets/images/event.png",
+      "title": "lkj",
+      "fromDateString": "5.6.2019 0:0",
+      "toDateString": "5.6.2019 0:0",
+      "locDesc": "Linz, 2, Oberösterreich, 4010, Österreich"
     }
   ],
   "users": [
