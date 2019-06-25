@@ -133,6 +133,21 @@
       "fromDateString": "5.6.2019 0:0",
       "toDateString": "5.6.2019 0:0",
       "locDesc": "Linz, 2, Oberösterreich, 4010, Österreich"
+    },
+    {
+      "id": 9,
+      "creatorId": 0,
+      "fromDate": 1561561200000,
+      "toDate": 1561586400000,
+      "lon": 14.2949583,
+      "lat": 48.3235016,
+      "desc": "This is a test event. It is here to show that the date issue has been fixed already. Please ignore this test event.\nThank you very much,\nSincerly Development",
+      "type": "party",
+      "asset": "assets/images/event.png",
+      "title": "Testevent",
+      "fromDateString": "26.06.2019 17:00",
+      "toDateString": "27.06.2019 00:00",
+      "locDesc": "Freistädter Straße, St. Magdalena, Linz, Oberösterreich, 4040, Österreich"
     }
   ],
   "users": [
