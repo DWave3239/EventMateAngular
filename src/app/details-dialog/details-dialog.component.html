@@ -1,0 +1,21 @@
+<button mat-icon-button class="closeCorner" (click)="close()" color="accent"><mat-icon>close</mat-icon></button>
+<h1 mat-dialog-title>{{event.title}}</h1>
+<div mat-dialog-content>
+  <p>{{event.desc}}</p>
+  <table class="dateTable">
+    <tr>
+      <td class="firstColumn">Begin:</td>
+      <td>{{event.fromDateString}}</td>
+    </tr>
+    <tr>
+      <td class="firstColumn">End:</td>
+      <td>{{event.toDateString}}</td>
+    </tr>
+    <tr>
+      <td class="firstColumn">Location:</td>
+      <td><button mat-button (click)="openLoc()">{{event.locDesc}}</button></td>
+    </tr>
+  </table>
+
+</div>
+<button mat-raised-button class="closeBottom" (click)="close()" color="accent">Close</button>

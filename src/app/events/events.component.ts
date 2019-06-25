@@ -1,3 +1,4 @@
+import { DetailsDialogComponent } from './../details-dialog/details-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AddEventDialogComponent } from './../add-event-dialog/add-event-dialog.component';
 import { EMEvent } from './../models/emevent.model';
@@ -18,7 +19,7 @@ export class EventsComponent implements OnInit {
   filteredEvents: EMEvent[] = [];
   fdd: FilterDialogData;
 
-  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public dialog: MatDialog) {
+  constructor(private _dataService: DataService, private _filterService: FilterService, private _locationService: LocationService, public addDialog: MatDialog, public detailsDialog: MatDialog) {
     this.loadData();
     this._locationService.getLocation(); //TODO update page
     _filterService.getData().subscribe(fdd => {
@@ -27,9 +28,9 @@ export class EventsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  loadData(): void{
+  loadData(): void {
     this.events = [];
     this._dataService.getUpcomingEvent().subscribe((events: EMEvent[]) => {
       this.events = events.filter(e => e.toDate === null || e.toDate >= new Date().getTime());
@@ -41,11 +42,11 @@ export class EventsComponent implements OnInit {
 
   dateToString(timestamp: number): string {
     let date;
-    if(!timestamp) return "no information";
-    else           date = new Date(timestamp);
+    if (!timestamp) return "no information";
+    else date = new Date(timestamp);
     //var days = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
     var days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    return days[date.getUTCDay()] + ", " + this.zeroFill(date.getUTCDate(), 2) + "." + this.zeroFill(date.getUTCMonth()+1, 2) + "." + date.getUTCFullYear() + " " + this.zeroFill(date.getHours(), 2) + ":" + this.zeroFill(date.getMinutes(), 2);
+    return days[date.getUTCDay()] + ", " + this.zeroFill(date.getUTCDate(), 2) + "." + this.zeroFill(date.getUTCMonth() + 1, 2) + "." + date.getUTCFullYear() + " " + this.zeroFill(date.getHours(), 2) + ":" + this.zeroFill(date.getMinutes(), 2);
   }
 
   private zeroFill(number, width): string {
@@ -56,12 +57,12 @@ export class EventsComponent implements OnInit {
     return number + ""; // always return a string
   }
 
-  addEvent(){
+  addEvent() {
     this.openAddEventDialog();
   }
 
-  openAddEventDialog(){
-      const dialogRef = this.dialog.open(AddEventDialogComponent, {
+  openAddEventDialog() {
+    const dialogRef = this.addDialog.open(AddEventDialogComponent, {
       width: '90%',
       maxWidth: '1000px',
       autoFocus: false
@@ -73,17 +74,17 @@ export class EventsComponent implements OnInit {
   }
 
 
-  private applyFilter(){
+  private applyFilter() {
     this.filteredEvents = this.events;
-    if(this.fdd){
+    if (this.fdd) {
       //console.log(this.fdd);
       // distance check
-      if(this.fdd.distance && this.fdd.distance > 0){
-        if(this.fdd.lon !== null && this.fdd.lon !== undefined && this.fdd.lat !== null && this.fdd.lat !== undefined){
+      if (this.fdd.distance && this.fdd.distance > 0) {
+        if (this.fdd.lon !== null && this.fdd.lon !== undefined && this.fdd.lat !== null && this.fdd.lat !== undefined) {
           /*console.log(this.fdd.distance+" 1\nLon: "+this.fdd.lon+"\nLat: "+this.fdd.lat);
           this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat)));*/
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat) <= this.fdd.distance);
-        }else{
+        } else {
           /*console.log(this.fdd.distance+" 2");
           this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenHere(e.lon, e.lat)));*/
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(e.lon, e.lat) <= this.fdd.distance);
@@ -91,21 +92,21 @@ export class EventsComponent implements OnInit {
       }
 
       // from date check
-      if(this.fdd.fromDate){
+      if (this.fdd.fromDate) {
         /*console.log("-----------------------------\n"+this.fdd.fromDate.getTime());
         this.filteredEvents.forEach(e => console.log(e.fromDate));*/
         this.filteredEvents = this.filteredEvents.filter(e => e.fromDate >= this.fdd.fromDate.getTime() || e.fromDate === null);
       }
 
       // to date check
-      if(this.fdd.toDate){
+      if (this.fdd.toDate) {
         /*console.log("-----------------------------\n"+this.fdd.toDate.getTime());
         this.filteredEvents.forEach(e => console.log(e.toDate));*/
         this.filteredEvents = this.filteredEvents.filter(e => e.toDate <= this.fdd.toDate.getTime() || e.toDate === null);
       }
 
       // type check
-      if(this.fdd.selectedTypes){
+      if (this.fdd.selectedTypes) {
         /*console.log(this.fdd.selectedTypes);
         this.filteredEvents.forEach(e => console.log(e.type));*/
         this.filteredEvents = this.filteredEvents.filter(e => this.fdd.selectedTypes.indexOf(e.type) >= 0 || e.type === null || e.type === "");
@@ -114,20 +115,48 @@ export class EventsComponent implements OnInit {
 
     this.filteredEvents.sort((a, b) => {
       let lenA, lenB;
-      if(this.fdd.lon && this.fdd.lat && this.fdd.lon !== null && this.fdd.lat !== null){
+      if (this.fdd.lon && this.fdd.lat && this.fdd.lon !== null && this.fdd.lat !== null) {
         lenA = this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, a.lon, a.lat);
         lenB = this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, b.lon, b.lat);
-      }else{
+      } else {
         lenA = this._locationService.distanceInKmBetweenHere(a.lon, a.lat);
         lenB = this._locationService.distanceInKmBetweenHere(b.lon, b.lat);
       }
-      if(lenA < lenB){
+      if (lenA < lenB) {
         return -1;
       }
-      if(lenA > lenB){
+      if (lenA > lenB) {
         return 1;
       }
       return 0;
+    });
+  }
+
+  showDetails(id: number) {
+    let found = false;
+    let tempEvent: EMEvent;
+    for (let i = 0; i < this.events.length && !found; i++) {
+      const event = this.events[i];
+      if (event.id === id) {
+        found = true;
+        tempEvent = event;
+      }
+    }
+    if (found) {
+      this.showDetailsDialog(tempEvent);
+    }
+  }
+
+  showDetailsDialog(event: EMEvent) {
+    const dialogRef = this.detailsDialog.open(DetailsDialogComponent, {
+      width: '90%',
+      maxWidth: '1000px',
+      data: event,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
     });
   }
 }
