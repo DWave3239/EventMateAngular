@@ -54,8 +54,6 @@ export class FilterDialogComponent implements OnInit {
 
   public locationAutoComplete$: Observable<string[]> = null;
   autoCompleteControl = new FormControl();
-  lons: number[];
-  lats: number[];
 
   constructor(
     private location: LocationService,
@@ -87,6 +85,9 @@ export class FilterDialogComponent implements OnInit {
     );
   }
 
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log("fired"));
+  }
   formatLabel(value: number | null) {
     if (!value) {
       return ' 0km ';
@@ -96,14 +97,18 @@ export class FilterDialogComponent implements OnInit {
   }
 
   onSelectionChange(option, lon, lat) {
-    this.data.lat = lon;
-    this.data.lon = lat;
+    this.data.lat = lat;
+    this.data.lon = lon;
     this.data.locationString = option;
   }
 
   getCurrentLocation() {
-    if (this.data.lat !== undefined && this.data.lon !== undefined) {
-      this.data.locationString = this.data.lat + ',' + this.data.lon;
+    while (this.location.lat === undefined || this.location.lon === undefined) {
+      this.delay(500).then(any => {
+      })
     }
+    this.data.lat = this.location.lat;
+    this.data.lon = this.location.lon;
+    this.data.locationString = this.location.lat + ',' + this.location.lon;
   }
 }

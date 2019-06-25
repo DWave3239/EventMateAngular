@@ -10,7 +10,7 @@
           </button>
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let item of locationAutoComplete$ | async; let i = index" [value]="item.display_name"
-          (click)="onSelectionChange(item.display_name, item.lon, lon)">
+          (click)="onSelectionChange(item.display_name, item.lon, item.lat)">
           {{item.display_name}}
         </mat-option>
       </mat-autocomplete>
