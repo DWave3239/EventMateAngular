@@ -20,8 +20,7 @@
   <div class="addEventEntry">
     <div class="date">
       <mat-form-field class="datepicker">
-        <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:" [value]="fromDate"
-          [(ngModel)]="fromDate">
+        <input matInput [matDatepicker]="pickerFrom" placeholder="From Date:" [value]="fromDate" [(ngModel)]="fromDate">
         <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom></mat-datepicker>
       </mat-form-field>
@@ -37,8 +36,7 @@
     </div>
     <div class="date">
       <mat-form-field class="datepicker">
-        <input matInput [matDatepicker]="pickerTo" placeholder="To Date:" [value]="toDate"
-          [(ngModel)]="toDate">
+        <input matInput [matDatepicker]="pickerTo" placeholder="To Date:" [value]="toDate" [(ngModel)]="toDate">
         <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo></mat-datepicker>
       </mat-form-field>
