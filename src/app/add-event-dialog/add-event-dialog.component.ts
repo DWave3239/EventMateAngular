@@ -114,16 +114,13 @@ export class AddEventDialogComponent implements OnInit {
   }
 
   addEvent() {
-    console.log(this.fromDate);
-    console.log(this.toDate);
-
     var tempFromDate: Date = new Date(this.fromDate.getFullYear(), this.fromDate.getMonth() + 1, this.fromDate.getDay(), this.fromHH, this.fromMM, 0, 0);
     var tempToDate: Date = new Date(this.toDate.getFullYear(), this.toDate.getMonth() + 1, this.toDate.getDay(), this.toHH, this.toMM, 0, 0);
     let tempLat = this.location.lat;
     let tempLon = this.location.lon;
     let tempAsset = 'assets/images/event.png';
-    let tempFromDateString = this.fromDate.getDay() + '.' + this.fromDate.getMonth()+1 + '.' + this.fromDate.getFullYear() + ' ' +  this.fromDate.getHours + ':' + this.fromDate.getMinutes;
-    let tempToDateString = this.toDate.getDay() + '.' + this.toDate.getMonth()+1 + '.' + this.toDate.getFullYear() + ' ' +  this.toDate.getHours + ':' + this.toDate.getMinutes;
+    let tempFromDateString = this.fromDate.getDay() + '.' + (this.fromDate.getMonth()+1) + '.' + this.fromDate.getFullYear() + ' ' +  this.fromDate.getHours() + ':' + this.fromDate.getMinutes();
+    let tempToDateString = this.toDate.getDay() + '.' + (this.toDate.getMonth()+1) + '.' + this.toDate.getFullYear() + ' ' +  this.toDate.getHours() + ':' + this.toDate.getMinutes();
 
     this.newEvent = {
       id: null,
@@ -140,8 +137,6 @@ export class AddEventDialogComponent implements OnInit {
       toDateString: tempToDateString,
       locDesc: this.locDesc
     }
-
-
 
     this._dataService.postEvent(this.newEvent);
   }
