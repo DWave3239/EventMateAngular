@@ -1,5 +1,3 @@
-import { Globals } from './../Globals';
-import { LocationService } from './../location.service';
 import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { EMEvent } from './../models/emevent.model';
@@ -7,10 +5,10 @@ import { DataService } from './../data.service';
 import { NativeDateAdapter, DateAdapter, MAT_DATE_FORMATS, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
 import { startWith, debounceTime, switchMap } from 'rxjs/operators';
-import { template } from '@angular/core/src/render3';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { NewEventService } from '../new-event.service';
+import { EventLocationService } from '../event-location.service';
 
 const MY_DATE_FORMATS = {
   parse: {
@@ -86,7 +84,7 @@ export class AddEventDialogComponent implements OnInit {
     locDesc: ''
   }
   constructor(private _dataService: DataService,
-      private location: LocationService,
+      private location: EventLocationService,
       public dialogRef: MatDialogRef<AddEventDialogComponent>,
       private _snackBar: MatSnackBar,
       private _userService: UserService,
