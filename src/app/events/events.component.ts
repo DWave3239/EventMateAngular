@@ -69,12 +69,12 @@ export class EventsComponent implements OnInit {
       // distance check
       if (this.fdd.distance && this.fdd.distance > 0) {
         if (this.fdd.lon !== null && this.fdd.lon !== undefined && this.fdd.lat !== null && this.fdd.lat !== undefined) {
-          //console.log(this.fdd.distance+" 1\nLon: "+this.fdd.lon+"\nLat: "+this.fdd.lat);
-          /*this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lon, this.fdd.lat, e.lon, e.lat)));*/
+          console.log(this.fdd.distance+" 1\nLon: "+this.fdd.lon+"\nLat: "+this.fdd.lat);
+          this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lat, this.fdd.lon, e.lat, e.lon)));
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenEarthCoordinates(this.fdd.lat, this.fdd.lon, e.lat, e.lon) <= this.fdd.distance);
         } else {
-          /*console.log(this.fdd.distance+" 2");
-          this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenHere(e.lon, e.lat)));*/
+          console.log(this.fdd.distance+" 2");
+          this.filteredEvents.forEach(e => console.log(this._locationService.distanceInKmBetweenHere(e.lon, e.lat)));
           this.filteredEvents = this.filteredEvents.filter(e => this._locationService.distanceInKmBetweenHere(e.lat, e.lon) <= this.fdd.distance);
         }
       }

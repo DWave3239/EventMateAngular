@@ -43,7 +43,7 @@ export class AppComponent {
   username: string = "test";
   password: string = "testuser";
 
-  sitesWithoutFilters = ['/about'];
+  sitesWithoutFilters = ['/about', '/yourEvents'];
 
   filterPic = "Off";
 
@@ -131,7 +131,7 @@ export class AppComponent {
   }
 
   public routeToHeader(route: string) {
-    var routes = { '/': 'NEAR ' + this.city, '/about': "About", '/register': 'User Registration'};
+    var routes = { '/': 'NEAR ' + this.city, '/about': "About", '/register': 'User Registration', '/yourEvents': 'Your Events'};
     return routes[route];
   }
 

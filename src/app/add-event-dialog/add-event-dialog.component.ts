@@ -62,6 +62,8 @@ export class AddEventDialogComponent implements OnInit {
   toDate: Date;
   toHH: 0;
   toMM: 0;
+  lon: null;
+  lat: null;
   desc: '';
   type: '';
   asset: '';
@@ -122,15 +124,15 @@ export class AddEventDialogComponent implements OnInit {
   }
 
   addEvent() {
-    var tempFromDate: Date = new Date(this.fromDate.getFullYear(), this.fromDate.getMonth() + 1, this.fromDate.getDate(), this.fromHH, this.fromMM, 0, 0);
+    /*var tempFromDate: Date = new Date(this.fromDate.getFullYear(), this.fromDate.getMonth() + 1, this.fromDate.getDate(), this.fromHH, this.fromMM, 0, 0);
     var tempToDate: Date = new Date(this.toDate.getFullYear(), this.toDate.getMonth() + 1, this.toDate.getDate(), this.toHH, this.toMM, 0, 0);
     let tempLat = this.location.lat;
-    let tempLon = this.location.lon;
+    let tempLon = this.location.lon;*/
     let tempAsset = 'assets/images/event.png';
-    this.fromDate.setHours(this.fromHH);
-    this.fromDate.setMinutes(this.fromMM);
-    this.toDate.setHours(this.toHH);
-    this.toDate.setMinutes(this.toMM);
+    if(this.fromHH) this.fromDate.setHours(this.fromHH);
+    if(this.fromMM) this.fromDate.setMinutes(this.fromMM);
+    if(this.toHH) this.toDate.setHours(this.toHH);
+    if(this.toMM) this.toDate.setMinutes(this.toMM);
     let tempFromDateString = this.zeroFill(this.fromDate.getDate(), 2) + '.' + this.zeroFill(this.fromDate.getMonth()+1, 2) + '.' + this.fromDate.getFullYear() + ' ' +  this.zeroFill(this.fromDate.getHours(), 2) + ':' + this.zeroFill(this.fromDate.getMinutes(), 2);
     let tempToDateString = this.zeroFill(this.toDate.getDate(), 2) + '.' + this.zeroFill(this.toDate.getMonth()+1, 2) + '.' + this.toDate.getFullYear() + ' ' +  this.zeroFill(this.toDate.getHours(), 2) + ':' + this.zeroFill(this.toDate.getMinutes(), 2);
 
@@ -139,8 +141,8 @@ export class AddEventDialogComponent implements OnInit {
       creatorId: this._userService.user.id,
       fromDate: this.fromDate.getTime(),
       toDate: this.toDate.getTime(),
-      lon: tempLon,
-      lat: tempLat,
+      lon: this.lon,
+      lat: this.lat,
       desc: this.desc,
       type: this.type,
       asset: tempAsset,
@@ -170,5 +172,11 @@ export class AddEventDialogComponent implements OnInit {
       return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
     }
     return number + ""; // always return a string
+  }
+
+  onSelectionChange(option, lon, lat) {
+    this.lat = lat;
+    this.lon = lon;
+    this.locDesc = option;
   }
 }
