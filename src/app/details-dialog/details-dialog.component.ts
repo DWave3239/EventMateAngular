@@ -21,7 +21,7 @@ export class DetailsDialogComponent implements OnInit {
   }
 
   openLoc(){
-    let url = 'https://maps.google.com/maps?q='+ this.event.lon + ',' + this.event.lat
+    let url = 'https://maps.google.com/maps?q='+ this.event.lat + ',' + this.event.lon
     window.open(url, '_blank');
   }
 

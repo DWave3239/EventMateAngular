@@ -72,6 +72,21 @@
       "fromDateString": "27.06.2019 12:00",
       "toDateString": "28.06.2019 00:00",
       "locDesc": "Wherever He Wants, Main Street, North Little Rock, Arkansas, 72201, Vereinigte Staaten von Amerika"
+    },
+    {
+      "id": 6,
+      "creatorId": 4,
+      "fromDate": 1561640400000,
+      "toDate": 1561676400000,
+      "lon": 14.301752175580146,
+      "lat": 48.33259727514198,
+      "desc": "!!! Kein One Way !!!\n\nDas ÖH JKU Sommerfest findet dieses Jahr am 27. Juni am Festgelände hinter dem Keplergebäude der JKU statt.\n",
+      "type": "party",
+      "asset": "assets/images/event.png",
+      "title": "ÖH Sommerfest",
+      "fromDateString": "27.06.2019 15:00",
+      "toDateString": "28.06.2019 01:00",
+      "locDesc": "Johannes-Kepler-Universität Linz, Mengerstraße, Auhof, Dornach-Auhof, Linz, Oberösterreich, 4040, Österreich"
     }
   ],
   "users": [
@@ -102,6 +117,13 @@
       "lastName": "Mayrhofer",
       "username": "chris",
       "password": "chris1"
+    },
+    {
+      "id": 4,
+      "firstName": "Simon",
+      "lastName": "Eilmsteiner",
+      "username": "eilmsteiner",
+      "password": "simon1"
     }
   ]
 }
